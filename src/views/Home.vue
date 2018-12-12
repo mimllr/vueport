@@ -72,6 +72,9 @@ export default {
     display: flex
     justify-content: center
     cursor: pointer
+    transition: transform .15s ease-in-out
+    &:hover
+      transform: translate(0, -2px)
     .arrow
       border-left: 6px solid black
       border-bottom: 6px solid black
