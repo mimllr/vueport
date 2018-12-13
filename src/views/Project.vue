@@ -42,7 +42,9 @@ export default {
   props: {
     projects: {
       type: Object,
-      default: {}
+      default: function() {
+        return {};
+      }
     }
   },
   created() {
@@ -50,13 +52,17 @@ export default {
   },
   watch: {
     $route(to, from) {
-      this.getProject();
+      if (to !== from) {
+        this.getProject();
+      }
     }
   },
   computed: {
     fullTextHTML: function() {
       if (this.project.fullText) {
         return converter.makeHtml(this.project.fullText.toString());
+      } else {
+        return "";
       }
     }
   },

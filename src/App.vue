@@ -32,8 +32,8 @@ export default {
           });
           this.projects = data;
         })
-        .catch(err => {
-          console.log(err);
+        .catch(function() {
+          this.getProjects();
         });
     }
   }

@@ -49,7 +49,9 @@ export default {
   props: {
     projects: {
       type: Object,
-      default: {}
+      default: function() {
+        return {};
+      }
     }
   },
   name: "home"
