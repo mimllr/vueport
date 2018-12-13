@@ -1,32 +1,66 @@
 <template>
   <div class="home">
-    <b-container fluid class="hero">
+    <b-container fluid class="hero mb-5">
       <b-row align-v="center" class="h-100">
         <b-col>
-          <img class="logo" src="../assets/Mike-Miller-Headshot.jpeg">
-          <h1>{{ header }}</h1>
+          <img class="logo" src="@/assets/Mike-Miller-Headshot.jpeg">
+          <h1>Hi, I'm Mike Miller</h1>
           <h2>Product Manager</h2>
           <h6>Development / Design / Marketing</h6>
         </b-col>
       </b-row>
-      <b-row align-v="center" class="arrow-container">
-        <div class="arrow"></div>
+    </b-container>
+    <b-container id="projects">
+      <b-row v-for="project in projects" :key="project.sys.id">
+        <b-col sm="12" md="5">
+          <img :src="project.fields.logo.fields.file.url" alt>
+        </b-col>
+        <b-col sm="12" md="7" align-v="center">
+          <h2 class="mb-4">
+            <router-link
+              :to="{name: 'project', params: { id: project.sys.id }}"
+            >{{ project.fields.name }}</router-link>
+          </h2>
+          <h4 class="mb-4">{{ project.fields.description }}</h4>
+          <router-link
+            class="btn btn-primary"
+            :to="{name: 'project', params: { id: project.fields.name, asset: project.sys.id }}"
+          >View Case Study</router-link>
+        </b-col>
       </b-row>
     </b-container>
-    <b-container fluid></b-container>
   </div>
 </template>
 
 <script>
+const contentful = require("contentful");
+const client = contentful.createClient({
+  // This is the space ID. A space is like a project folder in Contentful terms
+  space: process.env.VUE_APP_CONTENTLY_SPACE,
+  // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
+  accessToken: process.env.VUE_APP_CONTENTLY_ACCESS_TOKEN
+});
+
 export default {
   data() {
     return {
-      header: "Hi, I'm Mike Miller."
+      projects: []
     };
+  },
+  created() {
+    client
+      .getEntries()
+      .then(entries => {
+        this.projects = entries.items;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   name: "home"
 };
 </script>
+
 <style lang="sass" scoped>
 .hero
   height: 550px
@@ -54,33 +88,9 @@ export default {
     transform: skewY(1.5deg)
     transform-origin: 100%
   .logo
-    width: 200px
+    width: 180px
     border-radius: 100px
     box-shadow: 0 3px 3px rgba(0,0,0,0.3)
     margin-bottom: 1rem
-  .arrow-container
-    width: 50px
-    height: 50px
-    border-radius: 25px
-    position: absolute
-    bottom: -6px
-    left: 50%
-    right: 50%
-    margin-left: -25px
-    background: white
-    box-shadow: 0 3px 3px rgba(0,0,0,0.3)
-    display: flex
-    justify-content: center
-    cursor: pointer
-    transition: transform .15s ease-in-out
-    &:hover
-      transform: translate(0, -2px)
-    .arrow
-      border-left: 6px solid black
-      border-bottom: 6px solid black
-      width: 12px;
-      height: 12px;
-      transform: rotate(-45deg);
-
 
 </style>

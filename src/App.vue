@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <router-view/>
-    <div id="nav">
-      <router-link :to="{name: 'home'}">Home</router-link>&nbsp;|
-      <router-link :to="{name: 'about'}">About</router-link>&nbsp;|
-      <router-link :to="{name: 'projects'}">Projects</router-link>
-    </div>
   </div>
 </template>
+
+<script>
+export default {};
+</script>
+
 
 <style lang="sass">
 html
