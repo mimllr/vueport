@@ -24,7 +24,7 @@ export default {
   methods: {
     getProjects() {
       client
-        .getEntries()
+        .getEntries({ content_type: "project", order: "fields.order" })
         .then(entries => {
           let data = {};
           entries.items.forEach(function(e) {
@@ -45,8 +45,8 @@ export default {
   img
     border: 1px solid lightgray
     border-radius: 5px
-    margin-top: 2rem
     margin-bottom: 2rem
+    margin-top: 2rem
   p
     margin-bottom: 0.5rem
   h2

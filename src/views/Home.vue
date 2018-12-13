@@ -10,27 +10,26 @@
         </div>
       </div>
     </div>
-    <div class="container pb-5" id="projects">
+    <div class="container pb-5">
       <div class="row">
         <div class="col">
           <h2>My Work</h2>
         </div>
       </div>
-      <div class="row py-4" v-for="project in projects" :key="project.sys.id">
-        <div class="col-sm-12 col-md-5" sm="12" md="5">
-          <img
-            class="mb-3"
-            :src="project.fields.logo.fields.file.url"
-            :alt="project.fields.logo.fields.title"
-          >
+      <div class="row py-4 projects" v-for="project in projects" :key="project.sys.id">
+        <div class="col-sm-12 col-md-5 mb-2">
+          <img :src="project.fields.logo.fields.file.url" :alt="project.fields.logo.fields.title">
         </div>
-        <div class="col-sm-12 col-md-7" sm="12" md="7">
-          <h2 class="mb-4">
+        <div class="col-sm-12 col-md-7">
+          <h6 class="mb-3">
+            <small class="text-uppercase">{{ project.fields.type }}</small>
+          </h6>
+          <h2 class="mb-3">
             <router-link
               :to="{name: 'project', params: { id: project.fields.name, asset: project.sys.id }}"
             >{{ project.fields.name }}</router-link>
           </h2>
-          <h4 class="mb-4">{{ project.fields.description }}</h4>
+          <h4 class="mb-3">{{ project.fields.description }}</h4>
           <router-link
             class="btn btn-primary"
             :to="{name: 'project', params: { id: project.fields.name, asset: project.sys.id }}"
@@ -87,5 +86,10 @@ export default {
   .logo
     width: 180px
     margin-bottom: 1rem
+
+.projects
+  img
+    border: 1px solid lightgray
+    border-radius: 5px
 
 </style>
