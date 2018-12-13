@@ -1,24 +1,28 @@
 <template>
   <div class="home">
-    <b-container fluid class="hero mb-5">
-      <b-row align-v="center" class="h-100">
-        <b-col>
-          <img class="logo" src="@/assets/Mike-Miller-Headshot.jpeg">
+    <div class="container-fluid hero mb-5">
+      <div class="row h-100 align-items-center">
+        <div class="col">
+          <img class="logo shadow rounded-circle" src="@/assets/Mike-Miller-Headshot.jpeg">
           <h1>Hi, I'm Mike Miller</h1>
           <h2>Product Manager</h2>
           <h6>Development / Design / Marketing</h6>
-        </b-col>
-      </b-row>
-    </b-container>
-    <b-container id="projects">
-      <b-row v-for="project in projects" :key="project.sys.id">
-        <b-col sm="12" md="5">
-          <img :src="project.fields.logo.fields.file.url" alt>
-        </b-col>
-        <b-col sm="12" md="7" align-v="center">
+        </div>
+      </div>
+    </div>
+    <div class="container pb-5" id="projects">
+      <div class="row py-5" v-for="project in projects" :key="project.sys.id">
+        <div class="col-sm-12 col-md-5" sm="12" md="5">
+          <img
+            class="mb-3"
+            :src="project.fields.logo.fields.file.url"
+            :alt="project.fields.logo.fields.title"
+          >
+        </div>
+        <div class="col-sm-12 col-md-7" sm="12" md="7">
           <h2 class="mb-4">
             <router-link
-              :to="{name: 'project', params: { id: project.sys.id }}"
+              :to="{name: 'project', params: { id: project.fields.name, asset: project.sys.id }}"
             >{{ project.fields.name }}</router-link>
           </h2>
           <h4 class="mb-4">{{ project.fields.description }}</h4>
@@ -26,36 +30,22 @@
             class="btn btn-primary"
             :to="{name: 'project', params: { id: project.fields.name, asset: project.sys.id }}"
           >View Case Study</router-link>
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-const contentful = require("contentful");
-const client = contentful.createClient({
-  // This is the space ID. A space is like a project folder in Contentful terms
-  space: process.env.VUE_APP_CONTENTLY_SPACE,
-  // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
-  accessToken: process.env.VUE_APP_CONTENTLY_ACCESS_TOKEN
-});
-
 export default {
   data() {
-    return {
-      projects: []
-    };
+    return {};
   },
-  created() {
-    client
-      .getEntries()
-      .then(entries => {
-        this.projects = entries.items;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  props: {
+    projects: {
+      type: Object,
+      default: {}
+    }
   },
   name: "home"
 };
@@ -89,8 +79,6 @@ export default {
     transform-origin: 100%
   .logo
     width: 180px
-    border-radius: 100px
-    box-shadow: 0 3px 3px rgba(0,0,0,0.3)
     margin-bottom: 1rem
 
 </style>

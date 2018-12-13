@@ -1,51 +1,72 @@
 <template>
-  <div>
-    <b-container>
-      <b-row>
-        <b-col>
+  <div id="projects">
+    <div class="container">
+      <div class="row py-4">
+        <div class="col">
           <p>
             <router-link :to="{name: 'home'}">Home</router-link>
           </p>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col>
-          <h1>{{ project.name }}</h1>
-          <VueShowdown :markdown="project.fullText" flavor="github"/>
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <template v-if="loading">
+            <div class="loading">
+              <h1>Loading...</h1>
+            </div>
+          </template>
+          <template v-else>
+            <div class="content">
+              <h1>{{ project.name }}</h1>
+              <span v-html="fullTextHTML"></span>
+              <router-link :to="{name: 'home'}">Home</router-link>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-const contentful = require("contentful");
-const client = contentful.createClient({
-  // This is the space ID. A space is like a project folder in Contentful terms
-  space: process.env.VUE_APP_CONTENTLY_SPACE,
-  accessToken: process.env.VUE_APP_CONTENTLY_ACCESS_TOKEN
-});
+const showdown = require("showdown");
+const converter = new showdown.Converter({ emoji: true, flavor: "github" });
 
 export default {
   data() {
     return {
+      loading: true,
       project: {}
     };
   },
+  props: {
+    projects: {
+      type: Object,
+      default: {}
+    }
+  },
   created() {
-    client
-      .getEntry(this.$route.params.asset)
-      .then(entry => {
-        this.project = entry.fields;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.getProject();
   },
   watch: {
     $route(to, from) {
       console.log(to);
       console.log(from);
+      this.getProject();
+    }
+  },
+  computed: {
+    fullTextHTML: function() {
+      if (this.project.fullText) {
+        return converter.makeHtml(this.project.fullText.toString());
+      }
+    }
+  },
+  methods: {
+    getProject() {
+      var projName = this.$route.params.id;
+      this.project = this.projects[projName].fields;
+      this.loading = false;
     }
   },
   name: "project"
@@ -53,5 +74,4 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
 </style>

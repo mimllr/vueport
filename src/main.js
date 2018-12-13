@@ -1,18 +1,8 @@
 /* eslint-disable prettier/prettier */
 import Vue from "vue";
 import App from "./App.vue";
-import VueShowdown from 'vue-showdown';
 import router from "./router";
-import {
-  Layout
-} from 'bootstrap-vue/es/components';
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-Vue.use(Layout);
-Vue.use(VueShowdown, {
-  emoji: true
-})
+import 'bootstrap/scss/bootstrap_custom.scss'
 
 Vue.config.productionTip = false;
 

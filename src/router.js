@@ -18,5 +18,11 @@ export default new Router({
         return import('./views/Project.vue');
       }
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    return {
+      x: 0,
+      y: 0
+    }
+  }
 });
