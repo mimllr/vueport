@@ -11,7 +11,12 @@
       </div>
     </div>
     <div class="container pb-5" id="projects">
-      <div class="row py-5" v-for="project in projects" :key="project.sys.id">
+      <div class="row">
+        <div class="col">
+          <h2>Recent Projects</h2>
+        </div>
+      </div>
+      <div class="row py-4" v-for="project in projects" :key="project.sys.id">
         <div class="col-sm-12 col-md-5" sm="12" md="5">
           <img
             class="mb-3"

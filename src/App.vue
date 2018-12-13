@@ -45,4 +45,10 @@ export default {
   img
     border: 1px solid lightgray
     border-radius: 5px
+    margin-top: 2rem
+    margin-bottom: 2rem
+  p
+    margin-bottom: 0.5rem
+  h2
+    margin-top: 2rem
 </style>
