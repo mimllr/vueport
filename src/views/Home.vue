@@ -13,7 +13,7 @@
     <div class="container pb-5" id="projects">
       <div class="row">
         <div class="col">
-          <h2>Recent Projects</h2>
+          <h2>My Work</h2>
         </div>
       </div>
       <div class="row py-4" v-for="project in projects" :key="project.sys.id">
