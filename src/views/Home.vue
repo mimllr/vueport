@@ -24,7 +24,7 @@
         <div class="col-sm-12 col-md-6 col-lg-5 pb-4">
           <img
             class="shadow-sm rounded border"
-            :src="project.fields.logo.fields.file.url"
+            :src="project.fields.logo.fields.file.url + '?fm=jpg&fl=progressive'"
             :alt="project.fields.logo.fields.title"
           >
         </div>
