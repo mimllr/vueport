@@ -11,8 +11,8 @@ Vue.use(VueAnalytics, {
   id: process.env.VUE_APP_GA_TOKEN,
   router,
   debug: {
-    enabled: isProd,
-    sendHitTask: !isProd
+    enabled: !isProd,
+    sendHitTask: isProd
   }
 })
 
