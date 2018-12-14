@@ -2,7 +2,19 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import './styles/bootstrap_custom.scss'
+import VueAnalytics from 'vue-analytics';
+import './styles/bootstrap_custom.scss';
+
+const isProd = process.env.NODE_ENV === 'production';
+
+Vue.use(VueAnalytics, {
+  id: process.env.VUE_APP_GA_TOKEN,
+  router,
+  debug: {
+    enabled: !isProd,
+    sendHitTask: isProd
+  }
+})
 
 Vue.config.productionTip = false;
 
