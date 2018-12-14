@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       loading: true,
-      project: {}
+      project: this.projects[projSlug].fields
     };
   },
   props: {
@@ -67,8 +67,8 @@ export default {
   },
   methods: {
     getProject() {
-      var projName = this.$route.params.id;
-      this.project = this.projects[projName].fields;
+      var projSlug = this.$route.params.id;
+      this.project = this.projects[projSlug].fields;
       this.loading = false;
     }
   },
