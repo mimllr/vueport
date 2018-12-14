@@ -52,7 +52,10 @@ export default {
     }
   },
   data: function() {
-    if (this.checkNotEmpty(this.projects)) {
+    if (
+      this.checkNotEmpty(this.projects) &&
+      this.projects.hasOwnProperty(this.$route.params.id)
+    ) {
       return {
         loading: false,
         project: this.getProject()
