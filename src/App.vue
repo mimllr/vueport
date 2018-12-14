@@ -27,9 +27,9 @@
 
 <script>
 const contentful = require("contentful");
-const client = contentful.createClient({
-  space: process.env.VUE_APP_CONTENTLY_SPACE,
-  accessToken: process.env.VUE_APP_CONTENTLY_ACCESS_TOKEN
+const cfc = contentful.createClient({
+  space: process.env.VUE_APP_CONTENTFUL_SPACE,
+  accessToken: process.env.VUE_APP_CONTENTFUL_ACCESS_TOKEN
 });
 
 export default {
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     getProjects() {
-      client
+      cfc
         .getEntries({ content_type: "project", order: "fields.order" })
         .then(entries => {
           let data = {};

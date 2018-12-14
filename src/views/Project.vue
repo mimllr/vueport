@@ -13,6 +13,16 @@
           <template v-if="loading">
             <div class="loading">
               <h1>Loading...</h1>
+              <div class="progress">
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated bg-secondary"
+                  role="progressbar"
+                  aria-valuenow="10"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 100%"
+                ></div>
+              </div>
             </div>
           </template>
           <template v-else>
@@ -32,12 +42,7 @@ const showdown = require("showdown");
 const converter = new showdown.Converter({ emoji: true, flavor: "github" });
 
 export default {
-  data() {
-    return {
-      loading: true,
-      project: this.projects[projSlug].fields
-    };
-  },
+  name: "project",
   props: {
     projects: {
       type: Object,
@@ -46,14 +51,26 @@ export default {
       }
     }
   },
-  created() {
-    this.getProject();
+  data: function() {
+    if (this.checkForProjs()) {
+      return {
+        loading: false,
+        project: this.getProject()
+      };
+    } else {
+      return {
+        loading: true,
+        project: {}
+      };
+    }
   },
   watch: {
-    $route(to, from) {
-      if (to !== from) {
-        this.getProject();
-      }
+    $route() {
+      this.getProject();
+    },
+    projects: function(newVal, oldVal) {
+      this.project = this.getProject();
+      this.loading = false;
     }
   },
   computed: {
@@ -68,11 +85,13 @@ export default {
   methods: {
     getProject() {
       var projSlug = this.$route.params.id;
-      this.project = this.projects[projSlug].fields;
-      this.loading = false;
+      var projData = this.projects[projSlug].fields;
+      return projData;
+    },
+    checkForProjs() {
+      return Object.keys(this.projects).length > 0 ? true : false;
     }
-  },
-  name: "project"
+  }
 };
 </script>
 
