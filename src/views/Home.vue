@@ -34,13 +34,13 @@
           </h6>
           <h3 class="mb-3 display-5">
             <router-link
-              :to="{name: 'project', params: { id: project.fields.name, asset: project.sys.id }}"
+              :to="{name: 'project', params: { id: project.fields.slug }}"
             >{{ project.fields.name }}</router-link>
           </h3>
           <h4 class="mb-3">{{ project.fields.description }}</h4>
           <router-link
             class="btn btn-primary"
-            :to="{name: 'project', params: { id: project.fields.name, asset: project.sys.id }}"
+            :to="{name: 'project', params: { id: project.fields.slug }}"
           >View Case Study</router-link>
         </div>
       </div>

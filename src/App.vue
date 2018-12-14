@@ -48,7 +48,7 @@ export default {
         .then(entries => {
           let data = {};
           entries.items.forEach(function(e) {
-            data[e.fields.name] = e;
+            data[e.fields.slug] = e;
           });
           this.projects = data;
         })
