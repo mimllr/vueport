@@ -52,7 +52,7 @@ export default {
     }
   },
   data: function() {
-    if (this.checkForProjs()) {
+    if (this.checkNotEmpty(this.projects)) {
       return {
         loading: false,
         project: this.getProject()
@@ -68,9 +68,16 @@ export default {
     $route() {
       this.getProject();
     },
-    projects: function(newVal, oldVal) {
-      this.project = this.getProject();
-      this.loading = false;
+    projects: function() {
+      if (
+        this.checkNotEmpty(this.projects) &&
+        this.checkNotEmpty(this.project)
+      ) {
+        this.project = this.getProject();
+        this.loading = false;
+      } else {
+        this.loading = true;
+      }
     }
   },
   computed: {
@@ -88,8 +95,8 @@ export default {
       var projData = this.projects[projSlug].fields;
       return projData;
     },
-    checkForProjs() {
-      return Object.keys(this.projects).length > 0 ? true : false;
+    checkNotEmpty(obj) {
+      return Object.keys(obj).length > 0 ? true : false;
     }
   }
 };
