@@ -1,7 +1,27 @@
 <template>
   <div id="app">
     <router-view :projects="projects"/>
-    <footer class="text-center py-5">Copyright &copy; 2018 Mike Miller</footer>
+    <footer class="container text-center py-5">
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <ul class="list-inline">
+            <li class="list-inline-item pr-3">
+              <a href="https://github.com/mimllr" target="_BLANK">🐙 Github</a>
+            </li>
+            <li class="list-inline-item pr-3">
+              <a href="https://www.linkedin.com/in/mimllr/" target="_BLANK">💼 LinkedIn</a>
+            </li>
+            <li class="list-inline-item pr-3">
+              <a href="https://twitter.com/mimllr" target="_BLANK">🐦 Twitter</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="mailto:himikemiller@gmail.com">✉️ Email</a>
+            </li>
+          </ul>
+          <span>Copyright &copy; 2018 Mike Miller</span>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 

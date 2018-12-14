@@ -4,31 +4,39 @@
       <div class="row h-100 align-items-center">
         <div class="col">
           <img class="logo shadow rounded-circle" src="@/assets/Mike-Miller-Headshot.jpeg">
-          <h1>Hi, I'm Mike Miller</h1>
+          <h1 class="display-4">Hi, I'm Mike Miller</h1>
           <h2>Product Manager</h2>
-          <h6>Development / Design / Marketing</h6>
+          <h5>Development / Design / Marketing</h5>
         </div>
       </div>
     </div>
     <div class="container pb-5">
       <div class="row">
         <div class="col">
-          <h2>My Work</h2>
+          <h2 class="text-uppercase">My Work</h2>
         </div>
       </div>
-      <div class="row py-4 projects" v-for="project in projects" :key="project.sys.id">
-        <div class="col-sm-12 col-md-5 mb-2">
-          <img :src="project.fields.logo.fields.file.url" :alt="project.fields.logo.fields.title">
+      <div
+        class="row mb-4 py-4 projects justify-content-between"
+        v-for="project in projects"
+        :key="project.sys.id"
+      >
+        <div class="col-sm-12 col-md-6 col-lg-5 pb-4">
+          <img
+            class="shadow-sm rounded border"
+            :src="project.fields.logo.fields.file.url"
+            :alt="project.fields.logo.fields.title"
+          >
         </div>
-        <div class="col-sm-12 col-md-7">
+        <div class="col-sm-12 col-md-6">
           <h6 class="mb-3">
             <small class="text-uppercase">{{ project.fields.type }}</small>
           </h6>
-          <h2 class="mb-3">
+          <h3 class="mb-3 display-5">
             <router-link
               :to="{name: 'project', params: { id: project.fields.name, asset: project.sys.id }}"
             >{{ project.fields.name }}</router-link>
-          </h2>
+          </h3>
           <h4 class="mb-3">{{ project.fields.description }}</h4>
           <router-link
             class="btn btn-primary"
@@ -86,10 +94,5 @@ export default {
   .logo
     width: 180px
     margin-bottom: 1rem
-
-.projects
-  img
-    border: 1px solid lightgray
-    border-radius: 5px
 
 </style>

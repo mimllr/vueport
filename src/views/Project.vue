@@ -1,7 +1,7 @@
 <template>
   <div id="projects">
     <div class="container">
-      <div class="row py-4">
+      <div class="row py-3">
         <div class="col">
           <p>
             <router-link :to="{name: 'home'}">Home</router-link>
@@ -19,7 +19,6 @@
             <div class="content">
               <h1>{{ project.name }}</h1>
               <span v-html="fullTextHTML"></span>
-              <router-link :to="{name: 'home'}">Home</router-link>
             </div>
           </template>
         </div>
