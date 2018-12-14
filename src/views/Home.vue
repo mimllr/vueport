@@ -13,7 +13,7 @@
     <div class="container pb-5">
       <div class="row">
         <div class="col">
-          <h2 class="text-uppercase">My Work</h2>
+          <h2 class="display-5">My Work</h2>
         </div>
       </div>
       <div
