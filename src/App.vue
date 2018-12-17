@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       projects: {
-        found: false,
+        loading: true,
         data: {}
       }
     };
@@ -46,6 +46,7 @@ export default {
   },
   methods: {
     getProjects() {
+      this.projects.loading = true;
       cfc
         .getEntries({ content_type: "project", order: "fields.order" })
         .then(entries => {
@@ -53,14 +54,13 @@ export default {
           entries.items.forEach(function(e) {
             data[e.fields.slug] = e;
           });
-          this.projects.found = true;
           this.projects.data = data;
         })
         .catch(function() {
-          this.projects.found = false;
           this.projects.data = {};
           this.getProjects();
         });
+      this.projects.loading = false;
     }
   }
 };

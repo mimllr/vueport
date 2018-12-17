@@ -16,34 +16,51 @@
           <h2 class="display-5">My Work</h2>
         </div>
       </div>
-      <div
-        class="row mb-4 py-4 projects justify-content-between"
-        v-for="project in projects.data"
-        :key="project.sys.id"
-      >
-        <div class="col-sm-12 col-md-6 col-lg-5 pb-4">
-          <img
-            class="shadow-sm rounded border"
-            :src="project.fields.logo.fields.file.url + '?fm=jpg&fl=progressive'"
-            :alt="project.fields.logo.fields.title"
-          >
+      <template v-if="projects.loading">
+        <div class="loading">
+          <h2>Loading...</h2>
+          <div class="progress">
+            <div
+              class="progress-bar progress-bar-striped progress-bar-animated bg-secondary"
+              role="progressbar"
+              aria-valuenow="10"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="width: 100%"
+            ></div>
+          </div>
         </div>
-        <div class="col-sm-12 col-md-6">
-          <h6 class="mb-3">
-            <small class="text-uppercase">{{ project.fields.type }}</small>
-          </h6>
-          <h3 class="mb-3 display-5">
+      </template>
+      <template v-else>
+        <div
+          class="row mb-4 py-4 projects justify-content-between"
+          v-for="project in projects.data"
+          :key="project.sys.id"
+        >
+          <div class="col-sm-12 col-md-6 col-lg-5 pb-4">
+            <img
+              class="shadow-sm rounded border"
+              :src="project.fields.logo.fields.file.url + '?fm=jpg&fl=progressive'"
+              :alt="project.fields.logo.fields.title"
+            >
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <h6 class="mb-3">
+              <small class="text-uppercase">{{ project.fields.type }}</small>
+            </h6>
+            <h3 class="mb-3 display-5">
+              <router-link
+                :to="{name: 'project', params: { id: project.fields.slug }}"
+              >{{ project.fields.name }}</router-link>
+            </h3>
+            <h4 class="mb-3">{{ project.fields.description }}</h4>
             <router-link
+              class="btn btn-primary"
               :to="{name: 'project', params: { id: project.fields.slug }}"
-            >{{ project.fields.name }}</router-link>
-          </h3>
-          <h4 class="mb-3">{{ project.fields.description }}</h4>
-          <router-link
-            class="btn btn-primary"
-            :to="{name: 'project', params: { id: project.fields.slug }}"
-          >View Case Study</router-link>
+            >View Case Study</router-link>
+          </div>
         </div>
-      </div>
+      </template>
     </div>
   </div>
 </template>

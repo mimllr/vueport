@@ -26,7 +26,7 @@
             </div>
           </template>
           <template v-else>
-            <template v-if="project.present">
+            <template v-if="projectPresent">
               <div class="content">
                 <h1>{{ project.data.name }}</h1>
                 <span v-html="fullTextHTML"></span>
@@ -62,7 +62,6 @@ export default {
   data: function() {
     return {
       project: {
-        present: true,
         data: {}
       }
     };
@@ -80,11 +79,14 @@ export default {
   },
   computed: {
     loading: function() {
-      if (this.projects.found) {
-        return false;
-      } else {
+      if (this.projects.loading) {
         return true;
+      } else {
+        return false;
       }
+    },
+    projectPresent: function() {
+      return this.checkNotEmpty(this.project.data);
     },
     fullTextHTML: function() {
       if (this.project.data.fullText) {
@@ -99,10 +101,8 @@ export default {
       var projSlug = this.$route.params.id;
       if (this.projects.data.hasOwnProperty(projSlug)) {
         if (this.checkNotEmpty(this.projects.data[projSlug])) {
-          this.project.present = true;
           this.project.data = this.projects.data[projSlug].fields;
         } else {
-          this.project.present = false;
           this.project.data = {};
         }
       }
