@@ -18,7 +18,7 @@
       </div>
       <div
         class="row mb-4 py-4 projects justify-content-between"
-        v-for="project in projects"
+        v-for="project in projects.data"
         :key="project.sys.id"
       >
         <div class="col-sm-12 col-md-6 col-lg-5 pb-4">

@@ -26,10 +26,18 @@
             </div>
           </template>
           <template v-else>
-            <div class="content">
-              <h1>{{ project.name }}</h1>
-              <span v-html="fullTextHTML"></span>
-            </div>
+            <template v-if="project.present">
+              <div class="content">
+                <h1>{{ project.data.name }}</h1>
+                <span v-html="fullTextHTML"></span>
+              </div>
+            </template>
+            <template v-else>
+              <h2>Hmm, couldn't find that project.</h2>
+              <h3>Check the
+                <router-link :to="{name: 'home'}">homepage</router-link>.
+              </h3>
+            </template>
           </template>
         </div>
       </div>
@@ -52,51 +60,52 @@ export default {
     }
   },
   data: function() {
-    if (
-      this.checkNotEmpty(this.projects) &&
-      this.projects.hasOwnProperty(this.$route.params.id)
-    ) {
-      return {
-        loading: false,
-        project: this.getProject()
-      };
-    } else {
-      return {
-        loading: true,
-        project: {}
-      };
-    }
+    return {
+      project: {
+        present: true,
+        data: {}
+      }
+    };
+  },
+  created: function() {
+    this.setProject();
   },
   watch: {
     $route() {
-      this.getProject();
+      this.setProject();
     },
     projects: function() {
-      if (
-        this.checkNotEmpty(this.projects) &&
-        this.checkNotEmpty(this.project)
-      ) {
-        this.project = this.getProject();
-        this.loading = false;
-      } else {
-        this.loading = true;
-      }
+      this.setProject();
     }
   },
   computed: {
+    loading: function() {
+      if (this.projects.found) {
+        return false;
+      } else {
+        return true;
+      }
+    },
     fullTextHTML: function() {
-      if (this.project.fullText) {
-        return converter.makeHtml(this.project.fullText.toString());
+      if (this.project.data.fullText) {
+        return converter.makeHtml(this.project.data.fullText.toString());
       } else {
         return "";
       }
     }
   },
   methods: {
-    getProject() {
+    setProject() {
       var projSlug = this.$route.params.id;
-      var projData = this.projects[projSlug].fields;
-      return projData;
+      if (this.projects.data.hasOwnProperty(projSlug)) {
+        if (this.checkNotEmpty(this.projects.data[projSlug])) {
+          this.project.present = true;
+          this.project.data = this.projects.data[projSlug].fields;
+        } else {
+          this.project.present = false;
+          this.project.data = {};
+        }
+      }
     },
     checkNotEmpty(obj) {
       return Object.keys(obj).length > 0 ? true : false;
