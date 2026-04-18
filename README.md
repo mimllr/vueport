@@ -1,3 +1,5 @@
 # [himikemiller.com](https://himikemiller.com)
 
-My main portfolio site. A Vue.js SPA hosted on [Netlify](https://netlify.com) with [Contentful](https://contenful.com) for content hosting. Projects are presented in Markdown and converted with [Showdown.js](http://showdownjs.com). I used customized Boostrap v4 for the front-end framework.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/de614399-fb9d-4c4b-a9ac-33d3171ba868/deploy-status)](https://app.netlify.com/projects/himikemiller/deploys)
+
+My main portfolio site. Built with [Astro](https://astro.build) and hosted on [Netlify](https://netlify.com). Projects are written in Markdown using Astro's content collections.
