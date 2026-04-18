@@ -1,0 +1,172 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<Layout>
+  <div class="hero">
+    <div class="hero-inner">
+      <img
+        class="headshot"
+        src="/headshot.jpeg"
+        alt="Mike Miller"
+        width="160"
+        height="160"
+      />
+      <h1>Hi, I'm Mike Miller</h1>
+      <p class="title">Product Manager</p>
+      <p class="subtitle">Development · Design · Marketing</p>
+    </div>
+  </div>
+
+  <main>
+    <h2 class="section-heading">My Work</h2>
+    <div class="projects">
+      {projects.map((project) => (
+        <article class="project-card">
+          <div class="project-logo">
+            <img src={project.data.logo} alt={project.data.name} />
+          </div>
+          <div class="project-info">
+            <p class="project-type">{project.data.type}</p>
+            <h3>
+              <a href={`/projects/${project.slug}`}>{project.data.name}</a>
+            </h3>
+            <p class="project-description">{project.data.description}</p>
+            <a class="btn" href={`/projects/${project.slug}`}>View Case Study</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: -20% 0 0 0;
+    background: linear-gradient(135deg, var(--teal) 0%, var(--blue) 100%);
+    transform: skewY(1.5deg);
+    transform-origin: 100%;
+    z-index: 0;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    padding: 4rem 1rem 3rem;
+  }
+
+  .headshot {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1.25rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    border: 3px solid rgba(255,255,255,0.4);
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .title {
+    font-size: 1.35rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    opacity: 0.85;
+  }
+
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 5rem;
+  }
+
+  .section-heading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+  }
+
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .project-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  @media (max-width: 640px) {
+    .project-card { grid-template-columns: 1fr; }
+  }
+
+  .project-logo img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  }
+
+  .project-type {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-info h3 a { color: var(--text); }
+  .project-info h3 a:hover { color: var(--blue); text-decoration: none; }
+
+  .project-description {
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.55rem 1.25rem;
+    background: var(--blue);
+    color: white;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.15s;
+  }
+
+  .btn:hover { opacity: 0.85; text-decoration: none; }
+</style>

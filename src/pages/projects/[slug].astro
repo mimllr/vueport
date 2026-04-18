@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<Layout title={`${project.data.name} — Mike Miller`}>
+  <main>
+    <nav>
+      <a href="/">← Back</a>
+    </nav>
+    <header>
+      <p class="project-type">{project.data.type}</p>
+      <h1>{project.data.name}</h1>
+      <p class="project-description">{project.data.description}</p>
+    </header>
+    <div class="content">
+      <Content />
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem 1.5rem 5rem;
+  }
+
+  nav {
+    margin-bottom: 2rem;
+  }
+
+  nav a {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  nav a:hover { color: var(--blue); }
+
+  header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .project-type {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-description {
+    font-size: 1.125rem;
+    color: var(--muted);
+  }
+
+  .content :global(h2) {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .content :global(h3) {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .content :global(p) {
+    margin-bottom: 1rem;
+    color: #374151;
+  }
+
+  .content :global(ul), .content :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .content :global(li) {
+    margin-bottom: 0.35rem;
+    color: #374151;
+  }
+
+  .content :global(img) {
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.5rem 0;
+  }
+</style>
