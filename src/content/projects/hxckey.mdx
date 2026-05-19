@@ -18,6 +18,8 @@ The goal was to create a product that felt useful throughout the entire season, 
 
 Just as important, Hxckey was designed as a cleaner alternative to a lot of mainstream sports experiences: no advertisements, no gambling promotion, and no user data collection.
 
+It also avoids push notifications entirely to reduce interruptions and prevent unwanted spoilers.
+
 ## Problem
 
 Sports apps often force users to move between multiple screens and overloaded interfaces just to answer simple questions: Who is playing tonight? How is my team doing? What happened in the game? Where do they sit in the standings? Existing experiences can be broad, but not always focused on the workflows fans return to every day.
@@ -35,6 +37,7 @@ The product requirements centered on creating a strong day-to-day companion app 
 - Support team, player, and search-driven discovery flows
 - Let users favorite teams and personalize the home experience
 - Support Live Activities for active games
+- Avoid push notifications to prevent spoilers
 - Create a native iOS experience that feels fast, focused, and easy to return to
 
 ## Process
@@ -55,6 +58,8 @@ On the home screen, the app highlights favorite teams, today's games, and featur
 One of the more important product decisions was extending the experience beyond the app itself through Live Activities. Hxckey supports game-centric live updates so users can keep tabs on key moments from the Lock Screen and Dynamic Island. The implementation also accounts for favorites and app-level settings, making the feature feel connected to the rest of the product instead of bolted on.
 
 The app was built with SwiftUI and SwiftData, with shared sports-domain logic extracted into a reusable package. That structure made it easier to keep product features organized while supporting more advanced areas of the app like Live Activities, shareable branded game cards, and mock-data workflows for development and testing.
+
+The product was also an exploration in AI-assisted software development. Hxckey was built entirely with AI support, primarily using Claude, Codex, and OpenCode throughout the design and implementation process.
 
 <ImageCarousel
   images={[
