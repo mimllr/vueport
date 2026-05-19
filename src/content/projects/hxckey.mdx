@@ -1,0 +1,77 @@
+---
+name: "Hxckey"
+type: "product / ios development"
+description: "An NHL companion app for tracking teams, schedules, standings, live game details, and Live Activities."
+order: 0
+logo: "/images/hxckey-logo.jpg"
+---
+
+import ImageCarousel from '../../components/ImageCarousel.astro';
+
+## Overview
+
+Hxckey is an iOS app built for hockey fans who want a faster, more focused way to follow the NHL season. The app brings together schedules, standings, playoff views, team and player detail, live game data, and Live Activities in one native experience.
+
+<img src="/images/hxckey_home.PNG" alt="Hxckey Home" width="320" />
+
+The goal was to create a product that felt useful throughout the entire season, not just during a single game. That meant designing an app that could support quick check-ins for scores and standings, while also giving fans deeper views into matchups, team performance, and player activity.
+
+Just as important, Hxckey was designed as a cleaner alternative to a lot of mainstream sports experiences: no advertisements, no gambling promotion, and no user data collection.
+
+## Problem
+
+Sports apps often force users to move between multiple screens and overloaded interfaces just to answer simple questions: Who is playing tonight? How is my team doing? What happened in the game? Where do they sit in the standings? Existing experiences can be broad, but not always focused on the workflows fans return to every day.
+
+Hxckey was built to make those workflows feel more direct. The product needed to surface the most relevant information quickly, support favorite teams, and stay useful before, during, and after live games.
+
+It also needed to respect the user by staying free of ad clutter, betting prompts, and background data harvesting.
+
+## Requirements
+
+The product requirements centered on creating a strong day-to-day companion app for NHL fans.
+- Show today's games and upcoming schedule information
+- Surface standings and playoff views in a format that is easy to scan
+- Provide detailed game views including summary, box score, and timeline
+- Support team, player, and search-driven discovery flows
+- Let users favorite teams and personalize the home experience
+- Support Live Activities for active games
+- Create a native iOS experience that feels fast, focused, and easy to return to
+
+## Process
+
+I approached Hxckey as a native product rather than a thin wrapper around sports data. The app is organized around the sections fans check most often: Home, Schedule, Standings, Teams, Search, and Settings. That structure helped keep the top-level navigation simple while still allowing for deeper drill-down views into games, players, and teams.
+
+<ImageCarousel
+  images={[
+    { src: '/images/hxckey_schedule.PNG', alt: 'Hxckey Schedule' },
+    { src: '/images/hxckey_standings.PNG', alt: 'Hxckey Standings' },
+    { src: '/images/hxckey_favs.PNG', alt: 'Hxckey Favorites' },
+    { src: '/images/hxckey_score.PNG', alt: 'Hxckey Game Detail' },
+  ]}
+/>
+
+On the home screen, the app highlights favorite teams, today's games, and featured players to watch so users can get immediate value without hunting through menus. From there, users can move into dedicated detail screens for game summaries, box scores, scoring timelines, and team context.
+
+One of the more important product decisions was extending the experience beyond the app itself through Live Activities. Hxckey supports game-centric live updates so users can keep tabs on key moments from the Lock Screen and Dynamic Island. The implementation also accounts for favorites and app-level settings, making the feature feel connected to the rest of the product instead of bolted on.
+
+The app was built with SwiftUI and SwiftData, with shared sports-domain logic extracted into a reusable package. That structure made it easier to keep product features organized while supporting more advanced areas of the app like Live Activities, shareable branded game cards, and mock-data workflows for development and testing.
+
+<ImageCarousel
+  images={[
+    { src: '/images/hxckey_activity.PNG', alt: 'Hxckey Live Activity' },
+    { src: '/images/hxckey_share.PNG', alt: 'Hxckey Share Card' },
+    { src: '/images/hxckey_playoffs.PNG', alt: 'Hxckey Playoffs' },
+  ]}
+/>
+
+## Results
+
+Hxckey demonstrates a full product thinking process across information architecture, feature prioritization, native iOS implementation, and fan-centric UX. The app now supports:
+- Personalized home views based on favorite teams
+- Live game tracking with summary, box score, and timeline detail
+- Standings and playoff browsing
+- Team and player exploration
+- Search across app content
+- Live Activities for active game monitoring
+
+The result is a more focused NHL companion experience designed around the recurring habits of hockey fans.
