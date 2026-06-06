@@ -1,180 +1,199 @@
 ---
-import AvailabilityBadge from '../components/AvailabilityBadge.astro';
-import Layout from '../layouts/Layout.astro';
-import { links, profile } from '../data/site';
+import AvailabilityBadge from "../components/AvailabilityBadge.astro";
+import Layout from "../layouts/Layout.astro";
+import { links, profile } from "../data/site";
 ---
 
-<Layout title="Thinking — Mike Miller">
-  <main>
-    <section class="page-hero about-hero">
-      <div class="container about-grid">
-        <article class="bio-copy">
-          <p class="eyebrow">About</p>
-          <h1>Product leader. <span>Craft-obsessed builder.</span></h1>
+<Layout title="About — Mike Miller">
+    <main>
+        <section class="page-hero about-hero">
+            <div class="container about-grid">
+                <article class="bio-copy">
+                    <p class="eyebrow">About</p>
+                    <h1>
+                        Product leader. <span>Craft-obsessed builder.</span>
+                    </h1>
 
-          <p>
-            I started out writing code. Not because I wanted to be an engineer forever,
-            but because I believed — and still believe — that the best product people
-            understand what they're asking of the people who build with them. That fluency
-            between technical constraint and human possibility has defined everything I've
-            done since.
-          </p>
-          <p>
-            Over the past decade, I've operated at the intersection of scale and complexity.
-            I led product at enterprise software companies where the stakes were high and
-            the systems were deeply entangled — scaling platforms from <strong>10,000 to
-            200,000+ users</strong>, supporting <strong>250 enterprise customers</strong>
-            across regulated industries, and building developer platform capabilities used
-            by over <strong>500 engineers across 10 countries</strong>.
-          </p>
-          <p>
-            I founded <strong>Tinybots</strong> because I wanted to prove something to
-            myself: that I could go from zero to traction with product instincts, technical
-            resourcefulness, and a tight feedback loop with real users.
-          </p>
-          <p>
-            My work tends to orbit the same question: why does this work the way it does,
-            and how could it work better?
-          </p>
-        </article>
+                    <p>
+                        I started out writing code. Not because I wanted to be
+                        an engineer forever, but because I believed — and still
+                        believe — that the best product people understand what
+                        they're asking of the people who build with them. That
+                        fluency between technical constraint and human
+                        possibility has defined everything I've done since.
+                    </p>
+                    <p>
+                        Over the past decade, I've operated at the intersection
+                        of scale and complexity. I led product at enterprise
+                        software companies where the stakes were high and the
+                        systems were deeply entangled — scaling platforms from <strong
+                            >10,000 to 200,000+ users</strong
+                        >, supporting <strong>250 enterprise customers</strong>
+                        across regulated industries, and building developer platform
+                        capabilities used by over <strong
+                            >500 engineers across 10 countries</strong
+                        >.
+                    </p>
+                    <p>
+                        I founded <strong>Tinybots</strong> because I wanted to prove
+                        something to myself: that I could go from zero to traction
+                        with product instincts, technical resourcefulness, and a tight
+                        feedback loop with real users.
+                    </p>
+                    <p>
+                        My work tends to orbit the same question: why does this
+                        work the way it does, and how could it work better?
+                    </p>
+                </article>
 
-        <aside class="about-sidebar">
-          <div class="info-card quick-facts">
-            <p class="eyebrow">Quick Facts</p>
-            <dl class="fact-grid">
-              <div class="fact-row">
-                <dt>Location</dt>
-                <dd>{profile.location}</dd>
-              </div>
-              <div class="fact-row">
-                <dt>Focus</dt>
-                <dd>{profile.focus}</dd>
-              </div>
-              <div class="fact-row">
-                <dt>Currently</dt>
-                <dd><AvailabilityBadge label="Building Tinybots" /></dd>
-              </div>
-              <div class="fact-row">
-                <dt>Open to</dt>
-                <dd>Senior PM<br />Lead PM<br />Consulting</dd>
-              </div>
-              <div class="fact-row">
-                <dt>Background</dt>
-                <dd>{profile.background}</dd>
-              </div>
-            </dl>
-          </div>
-          <div class="sidebar-actions">
-            <a class="arrow-link" href={links.resumePdf}>Download resume <span>↓</span></a>
-            <a class="arrow-link muted-link" href={links.work}>View my work <span>→</span></a>
-          </div>
-        </aside>
-      </div>
-    </section>
+                <aside class="about-sidebar">
+                    <div class="info-card quick-facts">
+                        <p class="eyebrow">Quick Facts</p>
+                        <dl class="fact-grid">
+                            <div class="fact-row">
+                                <dt>Location</dt>
+                                <dd>{profile.location}</dd>
+                            </div>
+                            <div class="fact-row">
+                                <dt>Focus</dt>
+                                <dd>{profile.focus}</dd>
+                            </div>
+                            <div class="fact-row">
+                                <dt>Currently</dt>
+                                <dd>
+                                    <AvailabilityBadge
+                                        label="Building Tinybots"
+                                    />
+                                </dd>
+                            </div>
+                            <div class="fact-row">
+                                <dt>Open to</dt>
+                                <dd>Senior PM<br />Lead PM<br />Consulting</dd>
+                            </div>
+                            <div class="fact-row">
+                                <dt>Background</dt>
+                                <dd>{profile.background}</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="sidebar-actions">
+                        <a class="arrow-link" href={links.resumePdf}
+                            >Download resume <span>↓</span></a
+                        >
+                        <a class="arrow-link muted-link" href={links.work}
+                            >View my work <span>→</span></a
+                        >
+                    </div>
+                </aside>
+            </div>
+        </section>
 
-    <section class="page-section" id="developer-experience">
-      <div class="container about-cta dark-panel">
-        <div>
-          <p class="eyebrow eyebrow--dark">Availability</p>
-          <h2>Let's work together.</h2>
-          <p>
-            I'm open to senior product roles, lead platform work, AI product strategy,
-            and consulting with teams trying to make complex systems easier to use.
-          </p>
-        </div>
-        <div class="button-row">
-          <a class="button button--dark-primary" href={links.contact}>Contact me →</a>
-        </div>
-      </div>
-    </section>
-  </main>
+        <section class="page-section" id="developer-experience">
+            <div class="container about-cta dark-panel">
+                <div>
+                    <p class="eyebrow eyebrow--dark">Availability</p>
+                    <h2>Let's work together.</h2>
+                    <p>
+                        I'm open to senior product roles, lead platform work, AI
+                        product strategy, and consulting with teams trying to
+                        make complex systems easier to use.
+                    </p>
+                </div>
+                <div class="button-row">
+                    <a class="button button--dark-primary" href={links.contact}
+                        >Contact me →</a
+                    >
+                </div>
+            </div>
+        </section>
+    </main>
 </Layout>
 
 <style>
-  .about-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 0.58fr) minmax(380px, 0.42fr);
-    gap: 80px;
-    align-items: start;
-  }
+    .about-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.58fr) minmax(380px, 0.42fr);
+        gap: 80px;
+        align-items: start;
+    }
 
-  .bio-copy h1 {
-    font-size: clamp(48px, 5vw, 78px);
-  }
+    .bio-copy h1 {
+        font-size: clamp(48px, 5vw, 78px);
+    }
 
-  .bio-copy p:not(.eyebrow) {
-    max-width: 820px;
-    margin-top: 28px;
-    color: var(--muted);
-    font-size: 18px;
-    line-height: 1.85;
-  }
+    .bio-copy p:not(.eyebrow) {
+        max-width: 820px;
+        margin-top: 28px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.85;
+    }
 
-  .bio-copy strong {
-    color: var(--charcoal);
-    font-weight: 800;
-  }
-
-  .about-sidebar {
-    position: sticky;
-    top: 104px;
-    display: grid;
-    gap: 22px;
-    margin-top: 250px;
-  }
-
-  .quick-facts .eyebrow {
-    margin-bottom: 12px;
-  }
-
-  .sidebar-actions {
-    display: grid;
-    gap: 12px;
-  }
-
-  .sidebar-actions a {
-    width: fit-content;
-    color: var(--teal);
-    font-size: 14px;
-    font-weight: 750;
-  }
-
-  .sidebar-actions .muted-link {
-    color: var(--muted);
-  }
-
-  .about-cta {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 40px;
-    align-items: center;
-  }
-
-  .about-cta .button-row {
-    justify-content: flex-end;
-    margin-top: 0;
-  }
-
-  .about-cta h2 {
-    font-size: clamp(42px, 4vw, 62px);
-  }
-
-  .about-cta p:not(.eyebrow) {
-    max-width: 760px;
-    margin-top: 18px;
-    font-size: 17px;
-    line-height: 1.75;
-  }
-
-  @media (max-width: 1200px) {
-    .about-grid,
-    .about-cta {
-      grid-template-columns: 1fr;
+    .bio-copy strong {
+        color: var(--charcoal);
+        font-weight: 800;
     }
 
     .about-sidebar {
-      position: static;
-      margin-top: 0;
+        position: sticky;
+        top: 104px;
+        display: grid;
+        gap: 22px;
+        margin-top: 250px;
     }
-  }
+
+    .quick-facts .eyebrow {
+        margin-bottom: 12px;
+    }
+
+    .sidebar-actions {
+        display: grid;
+        gap: 12px;
+    }
+
+    .sidebar-actions a {
+        width: fit-content;
+        color: var(--teal);
+        font-size: 14px;
+        font-weight: 750;
+    }
+
+    .sidebar-actions .muted-link {
+        color: var(--muted);
+    }
+
+    .about-cta {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 40px;
+        align-items: center;
+    }
+
+    .about-cta .button-row {
+        justify-content: flex-end;
+        margin-top: 0;
+    }
+
+    .about-cta h2 {
+        font-size: clamp(42px, 4vw, 62px);
+    }
+
+    .about-cta p:not(.eyebrow) {
+        max-width: 760px;
+        margin-top: 18px;
+        font-size: 17px;
+        line-height: 1.75;
+    }
+
+    @media (max-width: 1200px) {
+        .about-grid,
+        .about-cta {
+            grid-template-columns: 1fr;
+        }
+
+        .about-sidebar {
+            position: static;
+            margin-top: 0;
+        }
+    }
 </style>
