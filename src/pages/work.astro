@@ -82,6 +82,14 @@ const filters = [
         align-items: center;
     }
 
+    .tinybots-feature.dark-card {
+        max-width: none;
+    }
+
+    .tinybots-feature > * {
+        min-width: 0;
+    }
+
     .tinybots-feature h2 {
         font-size: clamp(44px, 5vw, 72px);
         font-weight: 820;
@@ -112,7 +120,7 @@ const filters = [
         color: rgba(255, 255, 255, 0.68);
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1200px) {
         .tinybots-feature {
             grid-template-columns: 1fr;
         }
