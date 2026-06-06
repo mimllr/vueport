@@ -16,93 +16,135 @@ const { Content } = await project.render();
 
 <Layout title={`${project.data.name} — Mike Miller`}>
   <main>
-    <nav>
-      <a href="/">← Back</a>
-    </nav>
-    <header>
-      <p class="project-type">{project.data.type}</p>
-      <h1>{project.data.name}</h1>
-      <p class="project-description">{project.data.description}</p>
-    </header>
-    <div class="content">
-      <Content />
-    </div>
+    <section class="project-detail-hero">
+      <div class="container">
+        <a class="back-link arrow-link" href="/work"><span>←</span> Back to work</a>
+        <p class="eyebrow">{project.data.type}</p>
+        <h1>{project.data.name}</h1>
+        <p>{project.data.description}</p>
+        {project.data.liveDemoUrl && (
+          <a class="button button--primary" href={project.data.liveDemoUrl} target="_blank" rel="noopener">
+            Live Demo ↗
+          </a>
+        )}
+      </div>
+    </section>
+
+    <section class="project-detail-body">
+      <div class="container content-shell">
+        <Content />
+      </div>
+    </section>
   </main>
 </Layout>
 
 <style>
-  main {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 2rem 1.5rem 5rem;
+  .project-detail-hero {
+    padding: 72px 0 64px;
+    border-bottom: 1.5px solid var(--charcoal);
   }
 
-  nav {
-    margin-bottom: 2rem;
-  }
-
-  nav a {
+  .back-link {
+    display: flex;
+    width: fit-content;
+    margin-bottom: 40px;
     color: var(--muted);
-    font-size: 0.9rem;
+    font-size: 14px;
+    font-weight: 650;
   }
 
-  nav a:hover { color: var(--blue); }
-
-  header {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
+  .project-detail-hero .eyebrow {
+    display: flex;
+    width: fit-content;
+    margin-bottom: 28px;
   }
 
-  .project-type {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+  .project-detail-hero h1 {
+    max-width: 980px;
+    color: var(--charcoal);
+    font-size: clamp(48px, 5vw, 76px);
+    font-weight: 820;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .project-detail-hero p:not(.eyebrow) {
+    max-width: 760px;
+    margin-top: 24px;
     color: var(--muted);
-    margin-bottom: 0.5rem;
+    font-size: 19px;
+    line-height: 1.7;
   }
 
-  h1 {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  .project-detail-hero .button {
+    margin-top: 30px;
+  }
+
+  .project-detail-body {
+    padding: 72px 0 96px;
+  }
+
+  .content-shell {
+    max-width: 920px;
+  }
+
+  .content-shell :global(h2) {
+    margin: 52px 0 18px;
+    color: var(--charcoal);
+    font-size: 34px;
+    font-weight: 820;
+    letter-spacing: -0.04em;
+    line-height: 1.12;
+  }
+
+  .content-shell :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .content-shell :global(h3) {
+    margin: 36px 0 12px;
+    color: var(--charcoal);
+    font-size: 22px;
+    font-weight: 760;
+    letter-spacing: -0.03em;
+  }
+
+  .content-shell :global(p) {
+    margin-bottom: 20px;
+    color: #4b5563;
+    font-size: 17px;
+    line-height: 1.85;
+  }
+
+  .content-shell :global(ul),
+  .content-shell :global(ol) {
+    display: grid;
+    gap: 10px;
+    margin: 18px 0 28px;
+    padding-left: 22px;
+  }
+
+  .content-shell :global(li) {
+    color: #4b5563;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .content-shell :global(li::marker) {
+    color: var(--teal);
+  }
+
+  .content-shell :global(a) {
+    color: var(--teal);
     font-weight: 700;
-    margin-bottom: 0.75rem;
   }
 
-  .project-description {
-    font-size: 1.125rem;
-    color: var(--muted);
-  }
-
-  .content :global(h2) {
-    font-size: 1.35rem;
-    font-weight: 600;
-    margin: 2rem 0 0.75rem;
-  }
-
-  .content :global(h3) {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 1.5rem 0 0.5rem;
-  }
-
-  .content :global(p) {
-    margin-bottom: 1rem;
-    color: #374151;
-  }
-
-  .content :global(ul), .content :global(ol) {
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .content :global(li) {
-    margin-bottom: 0.35rem;
-    color: #374151;
-  }
-
-  .content :global(img) {
-    border-radius: var(--radius);
+  .content-shell :global(img) {
+    width: 100%;
+    height: auto;
+    margin: 34px 0;
     border: 1px solid var(--border);
-    margin: 1.5rem 0;
+    border-radius: 12px;
+    box-shadow: 0 18px 42px rgba(17, 24, 39, 0.08);
   }
 </style>

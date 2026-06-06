@@ -1,0 +1,120 @@
+---
+import MetricGrid from "../components/MetricGrid.astro";
+import ProjectRows from "../components/ProjectRows.astro";
+import Layout from "../layouts/Layout.astro";
+import { links, metrics, workItems } from "../data/site";
+
+const filters = [
+    { label: "All", value: "all" },
+    { label: "Platform", value: "platform" },
+    { label: "AI", value: "ai" },
+    { label: "Enterprise", value: "enterprise" },
+    { label: "Consumer", value: "consumer" },
+    { label: "Founder", value: "founder" },
+];
+---
+
+<Layout title="Work — Mike Miller">
+    <main>
+        <section class="page-hero work-hero">
+            <div class="container">
+                <p class="eyebrow">Work</p>
+                <h1>What I've built</h1>
+                <p>
+                    A collection of platform products, AI systems, developer
+                    tools, and consumer software — from enterprise scale to
+                    indie projects.
+                </p>
+                <div class="filter-bar" aria-label="Filter work by category">
+                    {
+                        filters.map((filter, index) => (
+                            <button
+                                class:list={{ "is-active": index === 0 }}
+                                type="button"
+                                data-work-filter={filter.value}
+                                aria-pressed={index === 0 ? "true" : "false"}
+                            >
+                                {filter.label}
+                            </button>
+                        ))
+                    }
+                </div>
+                <ProjectRows projects={workItems} filterable />
+            </div>
+        </section>
+
+        <section class="page-section">
+            <div class="container">
+                <section class="tinybots-feature dark-card">
+                    <div>
+                        <p class="eyebrow eyebrow--dark">Featured Studio</p>
+                        <h2>Tinybots</h2>
+                        <p>
+                            An independent product studio building small,
+                            focused software products with privacy-first
+                            defaults and honest iteration cycles.
+                        </p>
+                        <a
+                            class="button button--dark-primary"
+                            href={links.tinybots}>Visit Tinybots →</a
+                        >
+                    </div>
+                    <MetricGrid metrics={metrics} compact />
+                </section>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    .work-hero {
+        padding-bottom: 40px;
+    }
+
+    .work-hero h1 {
+        max-width: 760px;
+    }
+
+    .tinybots-feature {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(360px, 0.8fr);
+        gap: 56px;
+        align-items: center;
+    }
+
+    .tinybots-feature h2 {
+        font-size: clamp(44px, 5vw, 72px);
+        font-weight: 820;
+        line-height: 1;
+    }
+
+    .tinybots-feature p:not(.eyebrow) {
+        max-width: 620px;
+        margin: 22px 0 30px;
+        font-size: 17px;
+        line-height: 1.75;
+    }
+
+    .tinybots-feature :global(.metric-grid) {
+        background: rgba(255, 255, 255, 0.03);
+        border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .tinybots-feature :global(.metric-cell) {
+        border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .tinybots-feature :global(.metric-cell strong) {
+        color: #ffffff;
+    }
+
+    .tinybots-feature :global(.metric-cell span) {
+        color: rgba(255, 255, 255, 0.68);
+    }
+
+    @media (max-width: 900px) {
+        .tinybots-feature {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

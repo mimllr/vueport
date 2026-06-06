@@ -1,0 +1,15 @@
+---
+interface Props {
+  label?: string;
+  title?: string;
+  class?: string;
+}
+
+const { label, title, class: className = '' } = Astro.props;
+---
+
+<section class={`dark-panel ${className}`}>
+  {label && <p class="eyebrow eyebrow--dark">{label}</p>}
+  {title && <h2>{title}</h2>}
+  <slot />
+</section>

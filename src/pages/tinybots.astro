@@ -1,0 +1,464 @@
+---
+import Layout from "../layouts/Layout.astro";
+import {
+    links,
+    profile,
+    tinybotsCapabilities,
+    tinybotsProducts,
+    tinybotsValues,
+} from "../data/site";
+
+const statusClass = (status: string) =>
+    status.toLowerCase().replace(/\s+/g, "-");
+---
+
+<Layout title="Tinybots — Mike Miller">
+    <main>
+        <section class="tinybots-hero">
+            <div class="container tinybots-hero-grid">
+                <div>
+                    <p class="eyebrow eyebrow--dark">Tinybots · Est. 2026</p>
+                    <h1>Agent-driven development, all in-house.</h1>
+                    <p>
+                        Tinybots are small, focused applications, built by tiny
+                        bots:<br /> me, and a team of LLMs.
+                    </p>
+                    <div class="button-row">
+                        <a
+                            class="button button--dark-primary"
+                            href="https://tinybots.app"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            Explore products →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="product-card-stack" aria-label="Tinybots products">
+                    {
+                        tinybotsCapabilities.slice(0, 3).map((product) => (
+                            <span class="hero-product-card">
+                                <span class="product-icon">{product.icon}</span>
+                                <span>
+                                    <strong>{product.name}</strong>
+                                    <small>{product.description}</small>
+                                </span>
+                            </span>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- <section class="page-section">
+            <div class="container">
+                <p class="eyebrow">Values</p>
+                <h2 class="values-title">How we build</h2>
+                <div class="values-grid">
+                    {
+                        tinybotsValues.map((value) => (
+                            <article class="value-card">
+                                <span aria-hidden="true">
+                                    {value.icon === "shield"
+                                        ? "◈"
+                                        : value.icon === "cube"
+                                          ? "□"
+                                          : value.icon === "rocket"
+                                            ? "↗"
+                                            : "•"}
+                                </span>
+                                <h3>{value.title}</h3>
+                                <p>{value.description}</p>
+                            </article>
+                        ))
+                    }
+                </div>
+            </div>
+        </section> -->
+
+        <section class="page-section page-section--light" id="products">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Products</p>
+                        <h2>Small tools with strict boundaries</h2>
+                    </div>
+                </div>
+                <div class="product-list">
+                    {
+                        tinybotsProducts.map((product, index) => (
+                            <a
+                                class="product-row"
+                                href={product.href}
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <span>
+                                    {String(index + 1).padStart(2, "0")}
+                                </span>
+                                <strong>{product.name}</strong>
+                                <p>{product.description}</p>
+                                <em
+                                    class={`status-badge status-badge--${statusClass(product.status)}`}
+                                >
+                                    {product.status !== "Coming Soon" && <i />}
+                                    {product.status}
+                                </em>
+                                <b>Visit →</b>
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <section class="page-section" id="story">
+            <div class="container founder-note">
+                <img
+                    src={profile.avatar}
+                    alt={profile.name}
+                    width="460"
+                    height="460"
+                />
+                <article>
+                    <p class="eyebrow">Founder Note</p>
+                    <h2>Software doesn't have to be hard.</h2>
+                    <p>
+                        Tinybots was started to solve my own problems. I hated
+                        apps that were more invasive than helpful, and were more
+                        work than they were worth.
+                    </p>
+                    <p>
+                        With my own experience and expertise, and AI Agents at
+                        my side, I could build things that fit my own needs in a
+                        short amount of time. I decided to share that with
+                        everyone.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="page-section page-section--light">
+            <div class="container tinybots-cta dark-panel">
+                <h2>Follow the build.</h2>
+                <div class="button-row">
+                    <a
+                        class="button button--dark-primary"
+                        href={links.tinybotsExternal}
+                        target="_blank"
+                        rel="noopener">See all products →</a
+                    >
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    .tinybots-hero {
+        min-height: 680px;
+        display: flex;
+        align-items: center;
+        background:
+            repeating-linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.03) 0,
+                rgba(255, 255, 255, 0.03) 1px,
+                transparent 1px,
+                transparent 28px
+            ),
+            repeating-linear-gradient(
+                0deg,
+                rgba(255, 255, 255, 0.03) 0,
+                rgba(255, 255, 255, 0.03) 1px,
+                transparent 1px,
+                transparent 28px
+            ),
+            linear-gradient(135deg, var(--teal-card), var(--teal-dark));
+        color: var(--white);
+    }
+
+    .tinybots-hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.54fr) minmax(420px, 0.46fr);
+        gap: 80px;
+        align-items: center;
+    }
+
+    .tinybots-hero h1 {
+        max-width: 720px;
+        color: var(--white);
+        font-size: clamp(54px, 5.6vw, 88px);
+        font-weight: 820;
+        letter-spacing: -0.04em;
+        line-height: 1;
+    }
+
+    .tinybots-hero p:not(.eyebrow) {
+        max-width: 600px;
+        margin-top: 32px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 18px;
+        line-height: 1.75;
+    }
+
+    .product-card-stack {
+        display: grid;
+        gap: 12px;
+    }
+
+    .hero-product-card {
+        display: grid;
+        grid-template-columns: 44px 1fr auto;
+        gap: 18px;
+        align-items: center;
+        padding: 26px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.08);
+        transition:
+            transform 0.16s ease,
+            background 0.16s ease;
+    }
+
+    .hero-product-card:hover {
+        transform: translateX(4px);
+        background: rgba(255, 255, 255, 0.11);
+    }
+
+    .product-icon {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-product-card strong,
+    .product-row strong {
+        display: block;
+        color: var(--white);
+        font-weight: 780;
+    }
+
+    .hero-product-card small {
+        color: rgba(255, 255, 255, 0.62);
+    }
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        width: fit-content;
+        padding: 5px 10px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 800;
+    }
+
+    .status-badge i {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: currentColor;
+    }
+
+    .status-badge--live {
+        border-color: rgba(16, 185, 129, 0.35);
+        background: rgba(16, 185, 129, 0.14);
+        color: #6ee7b7;
+    }
+
+    .status-badge--live i {
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    .status-badge--beta {
+        border-color: rgba(245, 158, 11, 0.4);
+        background: rgba(245, 158, 11, 0.13);
+        color: #fde68a;
+    }
+
+    .status-badge--coming-soon {
+        border-color: rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.62);
+    }
+
+    .values-title {
+        margin-bottom: 58px;
+        font-size: 36px;
+        font-weight: 820;
+        letter-spacing: -0.04em;
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 60px;
+    }
+
+    .value-card > span {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: var(--teal-light);
+        color: var(--teal);
+        font-size: 20px;
+        font-weight: 800;
+    }
+
+    .value-card h3 {
+        margin-top: 22px;
+        color: var(--charcoal);
+        font-size: 17px;
+        font-weight: 820;
+    }
+
+    .value-card p {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .product-list {
+        display: grid;
+        border-top: 1.5px solid var(--charcoal);
+    }
+
+    .product-row {
+        display: grid;
+        grid-template-columns: 60px minmax(180px, 0.35fr) 1fr auto auto;
+        gap: 24px;
+        align-items: center;
+        padding: 30px 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .product-row span {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+    .product-row strong {
+        color: var(--charcoal);
+        font-size: 22px;
+        letter-spacing: -0.03em;
+    }
+
+    .product-row p {
+        color: var(--muted);
+    }
+
+    .product-row b {
+        color: var(--teal);
+        font-size: 14px;
+    }
+
+    .product-row .status-badge--live {
+        background: #ecfdf5;
+        border-color: #a7f3d0;
+        color: #059669;
+    }
+
+    .product-row .status-badge--beta {
+        background: #fffbeb;
+        border-color: #fde68a;
+        color: #d97706;
+    }
+
+    .product-row .status-badge--coming-soon {
+        background: var(--surface);
+        border-color: var(--border);
+        color: var(--muted);
+    }
+
+    .founder-note {
+        display: grid;
+        grid-template-columns: 420px 1fr;
+        gap: 72px;
+        align-items: center;
+    }
+
+    .founder-note img {
+        aspect-ratio: 1;
+        width: 100%;
+        border-radius: 16px;
+        object-fit: cover;
+    }
+
+    .founder-note h2,
+    .tinybots-cta h2 {
+        max-width: 760px;
+        font-size: clamp(36px, 4vw, 58px);
+        font-weight: 820;
+        letter-spacing: -0.04em;
+        line-height: 1.08;
+    }
+
+    .founder-note p:not(.eyebrow) {
+        margin-top: 20px;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.8;
+    }
+
+    .signature {
+        display: grid;
+        margin-top: 28px;
+    }
+
+    .signature strong {
+        color: var(--charcoal);
+        font-size: 18px;
+    }
+
+    .signature span {
+        color: var(--muted);
+        font-size: 14px;
+    }
+
+    .tinybots-cta {
+        display: flex;
+        justify-content: space-between;
+        gap: 32px;
+        align-items: center;
+    }
+
+    .tinybots-cta .button-row {
+        margin-top: 0;
+    }
+
+    @media (max-width: 1000px) {
+        .tinybots-hero-grid,
+        .values-grid,
+        .founder-note {
+            grid-template-columns: 1fr;
+        }
+
+        .product-row {
+            grid-template-columns: 48px 1fr;
+            align-items: start;
+        }
+
+        .product-row p,
+        .product-row .status-badge,
+        .product-row b {
+            grid-column: 2;
+        }
+
+        .tinybots-cta {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+    }
+</style>

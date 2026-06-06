@@ -1,0 +1,88 @@
+---
+name: "Greenlight"
+type: "product / ios development"
+description: "A health and fitness app that helps users balance training load and recovery using personal baseline signals."
+order: 2
+logo: "/images/hxckey-logo.jpg"
+---
+
+## Overview
+
+Greenlight is an iOS health and fitness product built around a simple question: should I push today, hold steady, or back off?
+
+The app uses personal baseline signals to help users understand when their recent activity and recovery patterns are aligned, and when they may be drifting toward too much load or too little recovery. It is not meant to replace a coach, clinician, or training plan. It is meant to give users a clearer daily read on how their body is trending.
+
+The product sits inside the Tinybots studio philosophy: small surface area, privacy-conscious defaults, and practical AI that explains itself instead of pretending to be certain.
+
+## Problem
+
+Most health dashboards are either too noisy or too generic. They show a long list of metrics without helping users understand what to do next, or they collapse complex signals into a single score that can feel arbitrary.
+
+For people trying to stay consistent with fitness, recovery, and daily movement, the practical question is usually more direct:
+
+- Am I recovering well enough to train?
+- Is my recent load increasing too quickly?
+- Are my short-term trends meaningfully different from my longer baseline?
+- What changed, and why does the app think it matters?
+
+Greenlight is designed around that decision moment. The product needs to be useful without becoming alarmist, prescriptive without being overconfident, and personal without collecting more data than necessary.
+
+## Requirements
+
+The early requirements centered on making recovery guidance understandable, grounded, and lightweight.
+
+- Compare short-term and longer-term baselines, including 7-day and 28-day views
+- Surface simple daily guidance for load, recovery, and balance
+- Explain the signals behind a recommendation instead of hiding them behind a black-box score
+- Keep the app focused on health context, not social sharing or performance theater
+- Avoid accounts, advertising, tracking, or unnecessary cloud dependencies
+- Support an AI-driven insight layer that summarizes trends without overstating certainty
+- Design the system so recommendations can gracefully say "not enough signal yet"
+
+## Product Approach
+
+I approached Greenlight as a behavior-support product rather than a metrics dashboard. The goal is not to show every possible data point. The goal is to help users make a better next decision with less interpretation work.
+
+That means the product is organized around a few core concepts:
+
+- **Load**: how much strain or activity the user has recently accumulated
+- **Recovery**: whether recent signals suggest the user is absorbing that load
+- **Baseline**: how current trends compare with the user's own normal range
+- **Confidence**: whether there is enough signal to provide useful guidance
+
+The AI layer is intentionally narrow. It does not try to become a coach. It translates trend changes into plain-language context, highlights which inputs matter most, and avoids confident recommendations when the underlying signal is thin.
+
+## Design Decisions
+
+Greenlight's main product constraint is trust. Health-adjacent software can become harmful when it overreaches, oversimplifies, or turns uncertainty into false precision.
+
+The design direction reflects that constraint.
+
+- Keep the primary status easy to scan: green, yellow, or red-style guidance without making the UI feel punitive
+- Pair every status with a short explanation of what changed
+- Prefer "consider easing up" over hard commands
+- Show when data is missing or insufficient
+- Let trends matter more than one-off fluctuations
+- Keep the app private by default, with no social layer or growth loop that depends on user data
+
+## Implementation
+
+Greenlight is being developed as a native iOS product. The system combines health signal interpretation, baseline comparison, and a lightweight insight layer for summaries and recommendations.
+
+The product architecture is built to keep domain logic separate from UI presentation so the health model can evolve without rewriting the app experience. That separation also makes it easier to test baseline calculations, tune thresholds, and run mock-data scenarios for edge cases before exposing them to users.
+
+The app is also part of a broader Tinybots pattern: use AI-assisted development to move quickly, but keep the product scope tight enough that the user experience stays coherent.
+
+## Results
+
+Greenlight is still in development, but the product thesis is clear: health software should help people build consistency without turning their body into a performance dashboard.
+
+The current direction supports:
+
+- Daily load and recovery guidance
+- Short-term and longer-term baseline comparisons
+- AI-generated health insights with bounded claims
+- Privacy-conscious product defaults
+- A focused iOS experience designed for repeat daily use
+
+The intended result is a quieter health product: one that helps users notice patterns, avoid overcorrection, and make better training decisions without adding another noisy dashboard to their day.

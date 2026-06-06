@@ -1,0 +1,197 @@
+{
+  "$schema": "https://jsonresume.org/schema",
+  "basics": {
+    "name": "Mike Miller",
+    "label": "Senior Product Manager | Platform Products | Enterprise SaaS | Product Builder",
+    "email": "himikemiller@gmail.com",
+    "url": "https://www.himikemiller.com",
+    "location": {
+      "city": "Flint",
+      "region": "Michigan",
+      "countryCode": "US"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "mimllr",
+        "url": "https://www.linkedin.com/in/mimllr"
+      }
+    ],
+    "summary": "Product leader with 10+ years of experience building and scaling enterprise SaaS platforms, internal business systems, and consumer software products. Currently leading platform product initiatives for ADP's next-generation global HCM platform serving 200,000+ monthly active users, 250+ enterprise clients, and 500+ developers across 10 countries. Experienced in product strategy, roadmap ownership, platform products, developer experience, design systems, analytics, growth optimization, and cross-functional leadership."
+  },
+  "work": [
+    {
+      "name": "ADP",
+      "position": "Sr. Technical Product Manager",
+      "url": "https://www.adp.com",
+      "startDate": "2026-03",
+      "endDate": "",
+      "location": "New York, NY",
+      "summary": "Product owner for core platform capabilities supporting ADP's next-generation global HCM platform.",
+      "highlights": [
+        "Own product strategy, roadmap, prioritization, and execution for core platform capabilities powering ADP's next-generation global HCM platform.",
+        "Lead platform investments supporting 200,000+ monthly active users, 250+ enterprise clients, and 500+ developers across 10 countries.",
+        "Direct product vision and delivery for the UI engine, design system, developer tooling ecosystem, globalization services, and 10+ shared backend platform services.",
+        "Reduced application UI load times by 90% through platform modernization initiatives, improving performance and user experience at enterprise scale.",
+        "Led development of fully automated UI translation and localization capabilities, enabling more efficient global product deployment.",
+        "Launched an enterprise Org Chart Export platform enabling automated PowerPoint and PDF generation for organizations with 50,000+ employees, including end-user customization and developer/client governance controls.",
+        "Coordinate roadmap planning, backlog prioritization, sprint planning, capacity management, and cross-team dependencies across 2+ engineering teams of 5-10 engineers each."
+      ]
+    },
+    {
+      "name": "ADP",
+      "position": "Technical Product Manager",
+      "url": "https://www.adp.com",
+      "startDate": "2021-11",
+      "endDate": "2026-03",
+      "location": "New York, NY",
+      "summary": "Scaled platform adoption and owned roadmap inputs across enterprise clients, developers, and internal stakeholders.",
+      "highlights": [
+        "Scaled platform adoption from roughly 10,000 users and single-digit enterprise clients to six-figure monthly active usage across 250+ clients.",
+        "Partnered with engineering, UX, architecture, and client stakeholders to balance customer needs, platform scalability, technical debt reduction, and long-term product strategy.",
+        "Established prioritization inputs from client feedback, platform analytics, performance metrics, developer needs, and engineering capacity."
+      ]
+    },
+    {
+      "name": "ADP",
+      "position": "Senior Developer Evangelist / Developer Evangelist",
+      "url": "https://www.adp.com",
+      "startDate": "2019-03",
+      "endDate": "2021-11",
+      "location": "New York, NY",
+      "summary": "Led developer experience initiatives and product feedback loops for enterprise developers.",
+      "highlights": [
+        "Led developer experience initiatives, platform adoption programs, technical education, and product feedback loops for enterprise developers.",
+        "Served as a strategic bridge between engineering teams, product organizations, and platform consumers, influencing platform direction through customer and developer insight."
+      ]
+    },
+    {
+      "name": "New York Code + Design Academy",
+      "position": "Director of Marketing & Product / Brand Strategy / Student Experience / Community",
+      "startDate": "2015-02",
+      "endDate": "2018-12",
+      "location": "New York, NY",
+      "summary": "Led growth, student experience, and internal product initiatives, including SectionsCRM.",
+      "highlights": [
+        "Led development of SectionsCRM, a custom admissions and student lifecycle platform used by 5,000+ users across admissions, marketing, operations, instructors, and prospective students.",
+        "Increased lead-to-application conversion from 33% to 50% and lead-to-enrollment conversion from 1.5% to 2.2% within three months of launch.",
+        "Increased daily contact rates from 15% to 20% by redesigning admissions workflows and lead management processes.",
+        "Fully automated student onboarding across 5+ institutional services, replacing manual provisioning workflows.",
+        "Doubled landing page conversion rates and increased acquisition performance by 200% through experimentation, user behavior analysis, and funnel optimization.",
+        "Improved student retention to 90%+ through engagement and lifecycle management programs."
+      ]
+    },
+    {
+      "name": "Tinybots",
+      "position": "Founder & Product Builder",
+      "url": "https://www.himikemiller.com",
+      "startDate": "2026",
+      "endDate": "",
+      "location": "Remote",
+      "summary": "Independent software studio developing consumer iOS products in sports and health technology.",
+      "highlights": [
+        "Founded an independent software studio focused on consumer mobile applications in sports and health technology.",
+        "Lead product discovery, roadmap planning, UX design, analytics strategy, monetization planning, and software development for Hxckey and Greenlight.",
+        "Developing Hxckey, a live NHL scores and analytics iOS app, and Greenlight, a health and recovery-focused iOS app planned for launch."
+      ]
+    },
+    {
+      "name": "Freelance",
+      "position": "Web Developer, Designer, Marketer",
+      "startDate": "2016-01",
+      "endDate": "2019-03",
+      "location": "New York City Metropolitan Area",
+      "highlights": [
+        "Consulted with clients across web development, design, marketing strategy, and digital product execution."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "New York University",
+      "area": "Integrated Marketing",
+      "studyType": "Master of Science (M.S.)",
+      "startDate": "2013",
+      "endDate": "2015"
+    },
+    {
+      "institution": "Adrian College",
+      "area": "Communication - Media Arts",
+      "studyType": "Bachelor of Arts",
+      "startDate": "2007",
+      "endDate": "2011"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Product Management",
+      "keywords": [
+        "Product Strategy",
+        "Roadmap Ownership",
+        "Prioritization",
+        "Product Discovery",
+        "User Research",
+        "Analytics",
+        "Experimentation"
+      ]
+    },
+    {
+      "name": "Platform Products",
+      "keywords": [
+        "Enterprise SaaS",
+        "Developer Experience",
+        "Design Systems",
+        "UI Platforms",
+        "Globalization",
+        "Localization",
+        "Backend Services"
+      ]
+    },
+    {
+      "name": "Leadership",
+      "keywords": [
+        "Cross-Functional Leadership",
+        "Agile Product Development",
+        "Sprint Planning",
+        "Capacity Planning",
+        "Stakeholder Management"
+      ]
+    },
+    {
+      "name": "Consumer Products",
+      "keywords": [
+        "Mobile Applications",
+        "iOS",
+        "Health Technology",
+        "Sports Technology",
+        "Monetization Planning"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "SectionsCRM",
+      "url": "https://www.himikemiller.com/projects/sections-crm/",
+      "description": "Internal admissions CRM and student lifecycle platform used by 5,000+ users.",
+      "highlights": [
+        "Increased lead-to-application conversion from 33% to 50%.",
+        "Increased lead-to-enrollment conversion from 1.5% to 2.2%.",
+        "Automated student onboarding across 5+ institutional services."
+      ]
+    },
+    {
+      "name": "Hxckey",
+      "description": "In-development iOS app for live NHL scores and analytics.",
+      "highlights": [
+        "Product strategy, roadmap, UX design, analytics strategy, and monetization planning."
+      ]
+    },
+    {
+      "name": "Greenlight",
+      "description": "In-development health and recovery-focused iOS app.",
+      "highlights": [
+        "Product thesis focused on balancing training and recovery using mobile health signals."
+      ]
+    }
+  ]
+}
