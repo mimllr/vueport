@@ -111,6 +111,7 @@ export const workItems = [
     year: "2019-Present",
     tags: ["Platform", "Enterprise", "Growth"],
     categories: ["platform", "enterprise"],
+    href: "/projects/global-hcm",
   },
   {
     title: "Sections CRM",

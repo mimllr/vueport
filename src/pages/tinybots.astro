@@ -438,11 +438,11 @@ const statusClass = (status: string) =>
         margin-top: 0;
     }
 
-    @media (max-width: 1000px) {
-        .tinybots-hero-grid,
-        .values-grid,
-        .founder-note {
-            grid-template-columns: 1fr;
+  @media (max-width: 1000px) {
+    .tinybots-hero-grid,
+    .values-grid,
+    .founder-note {
+      grid-template-columns: 1fr;
         }
 
         .product-row {
@@ -456,9 +456,15 @@ const statusClass = (status: string) =>
             grid-column: 2;
         }
 
-        .tinybots-cta {
-            align-items: flex-start;
-            flex-direction: column;
-        }
+    .tinybots-cta {
+      align-items: flex-start;
+      flex-direction: column;
     }
+  }
+
+  @media (max-width: 560px) {
+    .tinybots-hero {
+      padding-bottom: 56px;
+    }
+  }
 </style>
