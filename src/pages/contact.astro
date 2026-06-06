@@ -1,0 +1,251 @@
+---
+import AvailabilityBadge from "../components/AvailabilityBadge.astro";
+import Layout from "../layouts/Layout.astro";
+import { contactEmail, links, opportunities } from "../data/site";
+
+const contactMethods = [
+    {
+        label: "Email",
+        title: "Direct Email",
+        value: contactEmail,
+        note: "Best for project inquiries and consulting",
+        href: links.email,
+    },
+    {
+        label: "LinkedIn",
+        title: "LinkedIn",
+        value: "linkedin.com/in/mimllr",
+        note: "For professional connection and recruiting",
+        href: links.linkedin,
+    },
+    {
+        label: "Product",
+        title: "Tinybots",
+        value: "tinybots.co",
+        note: "Follow indie product work",
+        href: links.tinybotsExternal.main,
+    },
+];
+---
+
+<Layout title="Contact — Mike Miller">
+    <main>
+        <section class="page-hero contact-hero">
+            <div class="container contact-grid">
+                <div>
+                    <p class="eyebrow">Contact</p>
+                    <h1>Let's talk.</h1>
+                    <p>
+                        Whether you're hiring, exploring a consulting
+                        engagement, or building something interesting — I'd like
+                        to hear about it.
+                    </p>
+
+                    <div class="contact-methods">
+                        {
+                            contactMethods.map((method) => (
+                                <a
+                                    class="contact-card"
+                                    href={method.href}
+                                    target={
+                                        method.href.startsWith("http")
+                                            ? "_blank"
+                                            : undefined
+                                    }
+                                    rel={
+                                        method.href.startsWith("http")
+                                            ? "noopener"
+                                            : undefined
+                                    }
+                                >
+                                    <span>{method.label}</span>
+                                    <strong>{method.title}</strong>
+                                    <b>{method.value}</b>
+                                    <small>{method.note}</small>
+                                </a>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <aside class="dark-card opportunity-card">
+                    <p class="eyebrow eyebrow--dark">Opportunities</p>
+                    <h2>What I'm open to</h2>
+                    <ul>
+                        {
+                            opportunities.map((opportunity) => (
+                                <li>
+                                    <span>✓</span>
+                                    <strong>{opportunity}</strong>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                    <footer>
+                        <a class="arrow-link" href={links.resume}
+                            >View my resume <span>→</span></a
+                        >
+                        <small>Last updated Jun 2026</small>
+                    </footer>
+                </aside>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    .contact-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.55fr) minmax(420px, 0.45fr);
+        gap: 80px;
+        align-items: start;
+    }
+
+    .contact-hero h1 {
+        font-size: clamp(58px, 6vw, 80px);
+    }
+
+    .contact-methods {
+        display: grid;
+        gap: 12px;
+        margin: 48px 0 38px;
+    }
+
+    .contact-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 10px 14px;
+        padding: 26px 28px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--white);
+        transition:
+            border-color 0.16s ease,
+            box-shadow 0.16s ease,
+            transform 0.16s ease;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-1px);
+        border-color: var(--teal);
+        box-shadow: 0 18px 34px rgba(15, 118, 110, 0.1);
+    }
+
+    .contact-card span {
+        align-self: start;
+        padding: 4px 10px;
+        border-radius: 4px;
+        background: var(--teal);
+        color: var(--white);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .contact-card strong {
+        color: var(--charcoal);
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .contact-card b,
+    .contact-card small {
+        grid-column: 2;
+    }
+
+    .contact-card b {
+        color: var(--teal);
+        font-size: 15px;
+        font-weight: 650;
+    }
+
+    .contact-card small {
+        color: var(--muted);
+        font-size: 14px;
+    }
+
+    .opportunity-card {
+        padding: 44px 40px 34px;
+    }
+
+    .opportunity-card h2 {
+        font-size: 22px;
+        font-weight: 820;
+    }
+
+    .opportunity-card ul {
+        display: grid;
+        margin: 30px 0;
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .opportunity-card li {
+        display: grid;
+        grid-template-columns: 22px 1fr;
+        gap: 16px;
+        align-items: center;
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+    }
+
+    .opportunity-card li span {
+        display: grid;
+        place-items: center;
+        width: 18px;
+        height: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.11);
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 11px;
+    }
+
+    .opportunity-card li strong {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 16px;
+        font-weight: 650;
+    }
+
+    .opportunity-card footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.13);
+    }
+
+    .opportunity-card footer a {
+        color: var(--white);
+        font-size: 14px;
+        font-weight: 650;
+    }
+
+    .opportunity-card footer small {
+        color: rgba(255, 255, 255, 0.42);
+        font-size: 12px;
+    }
+
+    @media (max-width: 1000px) {
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 560px) {
+        .contact-card {
+            grid-template-columns: 1fr;
+        }
+
+        .contact-card b,
+        .contact-card small {
+            grid-column: auto;
+        }
+
+        .opportunity-card footer {
+            flex-direction: column;
+        }
+    }
+</style>

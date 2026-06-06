@@ -1,0 +1,105 @@
+---
+interface ProjectItem {
+  title: string;
+  description: string;
+  year?: string;
+  tags: string[];
+  categories: string[];
+  href?: string;
+}
+
+interface Props {
+  projects: ProjectItem[];
+  action?: string;
+  showYear?: boolean;
+  filterable?: boolean;
+}
+
+const {
+  projects,
+  action = 'View',
+  showYear = true,
+  filterable = false,
+} = Astro.props;
+---
+
+<div class="project-list" data-project-list={filterable ? 'filterable' : undefined}>
+  {projects.map((project, index) => {
+    const content = (
+      <>
+        <span class="project-number" data-project-number>{String(index + 1).padStart(2, '0')}</span>
+        <span class="project-content">
+          <strong>{project.title}</strong>
+          <span>{project.description}</span>
+          <span class="tag-list">
+            {project.tags.map((tag) => <em>{tag}</em>)}
+          </span>
+        </span>
+        <span class="project-action">
+          {showYear && project.year && <span>{project.year}</span>}
+          {project.href && <b>{action} <span aria-hidden="true">→</span></b>}
+        </span>
+      </>
+    );
+
+    return project.href ? (
+      <a
+        class="project-row"
+        href={project.href}
+        data-project-row
+        data-categories={project.categories.join(',')}
+      >
+        {content}
+      </a>
+    ) : (
+      <article
+        class="project-row project-row--static"
+        data-project-row
+        data-categories={project.categories.join(',')}
+      >
+        {content}
+      </article>
+    );
+  })}
+</div>
+
+{filterable && (
+  <script is:inline>
+    (() => {
+      function updateRows(category) {
+        document.querySelectorAll('[data-project-list="filterable"]').forEach((list) => {
+          let visibleIndex = 0;
+
+          list.querySelectorAll('[data-project-row]').forEach((row) => {
+            const categories = (row.getAttribute('data-categories') || '').split(',');
+            const isVisible = category === 'all' || categories.includes(category);
+            row.hidden = !isVisible;
+
+            if (isVisible) {
+              visibleIndex += 1;
+              const number = row.querySelector('[data-project-number]');
+              if (number) number.textContent = String(visibleIndex).padStart(2, '0');
+            }
+          });
+        });
+      }
+
+      if (!window.__workFiltersBound) {
+        window.__workFiltersBound = true;
+
+        document.addEventListener('click', (event) => {
+          const filter = event.target.closest('[data-work-filter]');
+          if (!filter) return;
+
+          const category = filter.getAttribute('data-work-filter') || 'all';
+          document.querySelectorAll('[data-work-filter]').forEach((item) => {
+            const isActive = item === filter;
+            item.classList.toggle('is-active', isActive);
+            item.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+          });
+          updateRows(category);
+        });
+      }
+    })();
+  </script>
+)}

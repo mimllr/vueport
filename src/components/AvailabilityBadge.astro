@@ -1,0 +1,13 @@
+---
+interface Props {
+  label?: string;
+  dark?: boolean;
+}
+
+const { label = 'Open to new roles', dark = false } = Astro.props;
+---
+
+<span class:list={['availability-badge', { 'availability-badge--dark': dark }]}>
+  <span class="availability-dot"></span>
+  {label}
+</span>

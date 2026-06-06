@@ -1,0 +1,342 @@
+---
+import MetricGrid from '../components/MetricGrid.astro';
+import Layout from '../layouts/Layout.astro';
+import {
+  educationItems,
+  links,
+  metrics,
+  profile,
+  resume,
+  resumeRoles,
+  resumeSkillGroups,
+} from '../data/site';
+---
+
+<Layout title="Resume — Mike Miller">
+  <main>
+    <section class="resume-header">
+      <div class="container resume-header-grid">
+        <div>
+          <p class="eyebrow">Resume</p>
+          <h1>{profile.name}</h1>
+          <p class="resume-subtitle">{resume.basics.label}</p>
+        </div>
+        <div class="resume-actions">
+          <div class="button-row">
+            <a class="button button--primary" href={links.resumePdf}>Download PDF ↓</a>
+            <a class="button" href={links.resumeJson}>View JSON →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section resume-body">
+      <div class="container resume-grid">
+        <article>
+          <div class="resume-section-title">
+            <p class="eyebrow">Experience</p>
+          </div>
+
+          <div class="experience-list">
+            {resumeRoles.map((role) => (
+              <section class="experience-item">
+                <header>
+                  <div>
+                    <h2>{role.name}</h2>
+                    <p>{role.position}</p>
+                  </div>
+                  <time>{role.dateRange}</time>
+                </header>
+                {role.summary && <p class="role-summary">{role.summary}</p>}
+                {role.highlights && (
+                  <ul>
+                    {role.highlights.map((highlight) => <li>{highlight}</li>)}
+                  </ul>
+                )}
+              </section>
+            ))}
+          </div>
+
+          <div class="resume-section-title education-title">
+            <p class="eyebrow">Education</p>
+          </div>
+          <div class="education-list">
+            {educationItems.map((item) => (
+              <section class="experience-item education-item">
+                <header>
+                  <div>
+                    <h2>{item.institution}</h2>
+                    <p>{item.credential}</p>
+                  </div>
+                  <time>{item.dateRange}</time>
+                </header>
+              </section>
+            ))}
+          </div>
+        </article>
+
+        <aside class="resume-sidebar">
+          <section class="info-card skill-card">
+            <p class="eyebrow">Skills</p>
+            {resumeSkillGroups.map((group) => (
+              <div class="skill-group">
+                <h2>{group.label}</h2>
+                <div class="skill-list">
+                  {group.skills.map((skill) => <span>{skill}</span>)}
+                </div>
+              </div>
+            ))}
+          </section>
+
+          <section class="info-card highlights-card">
+            <p class="eyebrow">Highlights</p>
+            <MetricGrid metrics={metrics} compact />
+          </section>
+
+          <section class="info-card elsewhere-card">
+            <p class="eyebrow">Elsewhere</p>
+            <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+            <a href={links.github} target="_blank" rel="noopener">GitHub <span>↗</span></a>
+            <a href={links.tinybots} >Tinybots <span>→</span></a>
+            <a href={links.email}>Email <span>→</span></a>
+          </section>
+        </aside>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .resume-header {
+    padding: 72px 0 64px;
+    border-bottom: 1.5px solid var(--charcoal);
+  }
+
+  .resume-header-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .resume-header h1 {
+    color: var(--charcoal);
+    font-size: clamp(44px, 5vw, 64px);
+    font-weight: 820;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .resume-subtitle {
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.45;
+  }
+
+  .resume-actions {
+    display: grid;
+    justify-items: end;
+    gap: 16px;
+  }
+
+  .resume-actions .button-row {
+    margin-top: 0;
+  }
+
+  .resume-body {
+    padding-top: 56px;
+  }
+
+  .resume-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.66fr) minmax(320px, 0.34fr);
+    gap: 64px;
+    align-items: start;
+    overflow: hidden;
+  }
+
+  .resume-section-title .eyebrow {
+    width: 260px;
+  }
+
+  .experience-list,
+  .education-list {
+    display: grid;
+  }
+
+  .experience-item {
+    padding: 34px 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .experience-item:first-child {
+    padding-top: 0;
+  }
+
+  .experience-item header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .experience-item h2 {
+    color: var(--charcoal);
+    font-size: 20px;
+    font-weight: 820;
+    letter-spacing: -0.03em;
+  }
+
+  .experience-item header p {
+    margin-top: 8px;
+    color: var(--teal);
+    font-size: 16px;
+    font-weight: 650;
+  }
+
+  .experience-item time {
+    display: inline-flex;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .role-summary {
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .experience-item ul {
+    display: grid;
+    gap: 13px;
+    margin-top: 22px;
+    padding-left: 18px;
+  }
+
+  .experience-item li {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+    padding-left: 4px;
+  }
+
+  .experience-item li::marker {
+    color: var(--teal);
+  }
+
+  .education-title {
+    margin-top: 58px;
+  }
+
+  .education-item {
+    padding-bottom: 28px;
+  }
+
+  .resume-sidebar {
+    position: sticky;
+    top: 104px;
+    display: grid;
+    min-width: 0;
+    gap: 40px;
+  }
+
+  .highlights-card :global(.metric-grid--compact) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .highlights-card :global(.metric-grid--compact .metric-cell:nth-child(2)) {
+    border-right: 0;
+  }
+
+  .highlights-card :global(.metric-grid--compact .metric-cell:nth-child(3)),
+  .highlights-card :global(.metric-grid--compact .metric-cell:nth-child(4)) {
+    border-top: 1px solid var(--border);
+  }
+
+  .skill-card {
+    display: grid;
+    gap: 24px;
+  }
+
+  .skill-group {
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-group:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .skill-group h2 {
+    margin-bottom: 14px;
+    color: var(--charcoal);
+    font-size: 12px;
+    font-weight: 780;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .skill-group .skill-list span {
+    display: inline-flex;
+    padding: 6px 11px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--white);
+    color: var(--charcoal);
+    font-size: 12px;
+    font-weight: 560;
+  }
+
+  .elsewhere-card {
+    display: grid;
+    gap: 10px;
+  }
+
+  .elsewhere-card a {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    color: var(--charcoal);
+    font-size: 14px;
+    font-weight: 650;
+    transition: background 0.16s ease, transform 0.16s ease;
+  }
+
+  .elsewhere-card a:hover {
+    transform: translateX(2px);
+    background: var(--teal-light);
+    color: var(--teal);
+  }
+
+  @media (max-width: 1200px) {
+    .resume-grid,
+    .resume-header-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .resume-sidebar {
+      position: static;
+    }
+
+    .resume-actions {
+      justify-items: start;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .experience-item header {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
