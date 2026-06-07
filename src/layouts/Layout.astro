@@ -476,8 +476,6 @@ const navItems = [
         display: flex;
         align-items: center;
         gap: 18px;
-        padding-bottom: 28px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .identity-card img {
@@ -547,6 +545,19 @@ const navItems = [
         border-top: 1px solid var(--border);
         border-bottom: 1px solid var(--border);
         background: var(--surface);
+    }
+
+    .metric-band {
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        background: var(--surface);
+    }
+
+    .metric-band .metric-grid {
+        width: min(var(--max-width), calc(100% - (var(--page-padding) * 2)));
+        margin: 0 auto;
+        border-top: 0;
+        border-bottom: 0;
     }
 
     .metric-cell {
