@@ -59,7 +59,6 @@
       "startDate": "2019-03",
       "endDate": "2021-11",
       "location": "New York, NY",
-      "summary": "Led developer experience initiatives and product feedback loops for enterprise developers.",
       "highlights": [
         "Led developer experience initiatives, platform adoption programs, technical education, and product feedback loops for enterprise developers.",
         "Served as a strategic bridge between engineering teams, product organizations, and platform consumers, influencing platform direction through customer and developer insight."
@@ -91,8 +90,8 @@
       "summary": "Independent software studio developing consumer iOS products in sports and health technology.",
       "highlights": [
         "Founded an independent software studio focused on consumer mobile applications in sports and health technology.",
-        "Lead product discovery, roadmap planning, UX design, analytics strategy, monetization planning, and software development for Hxckey and Greenlight.",
-        "Developing Hxckey, a live NHL scores and analytics iOS app, and Greenlight, a health and recovery-focused iOS app planned for launch."
+        "Lead product discovery, roadmap planning, UX design, analytics strategy, monetization planning, and software development for Hxckey and Modify.",
+        "Developing Hxckey, a live NHL scores and analytics iOS app, and Modify, a health and recovery-focused iOS app planned for launch."
       ]
     },
     {
@@ -187,7 +186,7 @@
       ]
     },
     {
-      "name": "Greenlight",
+      "name": "Modify",
       "description": "In-development health and recovery-focused iOS app.",
       "highlights": [
         "Product thesis focused on balancing training and recovery using mobile health signals."

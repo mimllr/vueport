@@ -132,7 +132,7 @@ export const workItems = [
     href: "/tinybots",
   },
   {
-    title: "Greenlight",
+    title: "Modify",
     description:
       "A Health and Fitness app that aligns your 7- and 28-day baselines to keep your load and recovery balanced. Uses an AI-driven health model and insights.",
     year: "2026",
@@ -181,7 +181,7 @@ export const tinybotsCapabilities = [
 
 export const tinybotsProducts = [
   {
-    name: "Greenlight",
+    name: "Modify",
     description: "Health & Fitness app that keeps you balanced.",
     status: "Beta",
     icon: "🏋️‍♀️",

@@ -1,5 +1,5 @@
 ---
-name: "Greenlight"
+name: "Modify"
 type: "product / ios development"
 description: "A health and fitness app that helps users balance training load and recovery using personal baseline signals."
 order: 2
@@ -8,7 +8,7 @@ logo: "/images/hxckey-logo.jpg"
 
 ## Overview
 
-Greenlight is an iOS health and fitness product built around a simple question: should I push today, hold steady, or back off?
+Modify is an iOS health and fitness product built around a simple question: should I push today, hold steady, or back off?
 
 The app uses personal baseline signals to help users understand when their recent activity and recovery patterns are aligned, and when they may be drifting toward too much load or too little recovery. It is not meant to replace a coach, clinician, or training plan. It is meant to give users a clearer daily read on how their body is trending.
 
@@ -25,7 +25,7 @@ For people trying to stay consistent with fitness, recovery, and daily movement,
 - Are my short-term trends meaningfully different from my longer baseline?
 - What changed, and why does the app think it matters?
 
-Greenlight is designed around that decision moment. The product needs to be useful without becoming alarmist, prescriptive without being overconfident, and personal without collecting more data than necessary.
+Modify is designed around that decision moment. The product needs to be useful without becoming alarmist, prescriptive without being overconfident, and personal without collecting more data than necessary.
 
 ## Requirements
 
@@ -41,7 +41,7 @@ The early requirements centered on making recovery guidance understandable, grou
 
 ## Product Approach
 
-I approached Greenlight as a behavior-support product rather than a metrics dashboard. The goal is not to show every possible data point. The goal is to help users make a better next decision with less interpretation work.
+I approached Modify as a behavior-support product rather than a metrics dashboard. The goal is not to show every possible data point. The goal is to help users make a better next decision with less interpretation work.
 
 That means the product is organized around a few core concepts:
 
@@ -54,7 +54,7 @@ The AI layer is intentionally narrow. It does not try to become a coach. It tran
 
 ## Design Decisions
 
-Greenlight's main product constraint is trust. Health-adjacent software can become harmful when it overreaches, oversimplifies, or turns uncertainty into false precision.
+Modify's main product constraint is trust. Health-adjacent software can become harmful when it overreaches, oversimplifies, or turns uncertainty into false precision.
 
 The design direction reflects that constraint.
 
@@ -67,7 +67,7 @@ The design direction reflects that constraint.
 
 ## Implementation
 
-Greenlight is being developed as a native iOS product. The system combines health signal interpretation, baseline comparison, and a lightweight insight layer for summaries and recommendations.
+Modify is being developed as a native iOS product. The system combines health signal interpretation, baseline comparison, and a lightweight insight layer for summaries and recommendations.
 
 The product architecture is built to keep domain logic separate from UI presentation so the health model can evolve without rewriting the app experience. That separation also makes it easier to test baseline calculations, tune thresholds, and run mock-data scenarios for edge cases before exposing them to users.
 
@@ -75,7 +75,7 @@ The app is also part of a broader Tinybots pattern: use AI-assisted development 
 
 ## Results
 
-Greenlight is still in development, but the product thesis is clear: health software should help people build consistency without turning their body into a performance dashboard.
+Modify is still in development, but the product thesis is clear: health software should help people build consistency without turning their body into a performance dashboard.
 
 The current direction supports:
 
