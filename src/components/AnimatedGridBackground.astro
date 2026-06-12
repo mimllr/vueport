@@ -19,8 +19,9 @@ const { class: className = "" } = Astro.props;
     const REPEL_RADIUS = 110;
     const REPEL_STRENGTH = 32;
     const WAVE_INTERVAL = 14000;
-    const WAVE_DURATION = 4500;
-    const WAVE_AMPLITUDE = 14;
+    const WAVE_DURATION = 5200;
+    const WAVE_AMPLITUDE = 7;
+    const WAVE_FREQ = 0.032;
 
     type MouseState = {
         x: number;
@@ -35,7 +36,22 @@ const { class: className = "" } = Astro.props;
     function getWaveBlend(time: number) {
         const cycle = time % WAVE_INTERVAL;
         if (cycle >= WAVE_DURATION) return 0;
-        return easeInOut(cycle / WAVE_DURATION);
+
+        const t = cycle / WAVE_DURATION;
+
+        if (t < 0.18) {
+            return easeInOut(t / 0.18) * 0.6;
+        }
+
+        if (t < 0.36) {
+            return 0.6 + easeInOut((t - 0.18) / 0.18) * 0.4;
+        }
+
+        if (t < 0.46) {
+            return 1;
+        }
+
+        return 1 - easeInOut((t - 0.46) / 0.54);
     }
 
     function repelOffset(
@@ -54,13 +70,18 @@ const { class: className = "" } = Astro.props;
     function lineOpacity(time: number, index: number, blend: number) {
         const pulse = 0.5 + 0.5 * Math.sin(time * 0.0011 + index * 0.65);
         const base = 0.018 + pulse * 0.028;
-        return base * (1 - blend * 0.35) + blend * 0.04;
+        return base * (1 - blend * 0.2) + blend * 0.025;
     }
 
-    function shouldWave(index: number, time: number, blend: number) {
-        if (blend <= 0) return false;
+    function lineWaveStrength(
+        lineIndex: number,
+        time: number,
+        envelope: number,
+    ) {
+        if (envelope <= 0.001) return 0;
         const seed = Math.floor(time / WAVE_INTERVAL) % 5;
-        return Math.abs((index % 5) - seed) <= 1;
+        if (Math.abs((lineIndex % 5) - seed) > 1) return 0;
+        return envelope;
     }
 
     function initGrid(root: HTMLElement) {
@@ -148,56 +169,54 @@ const { class: className = "" } = Astro.props;
                 const rawX = i * GRID_SPACING + driftX;
                 const baseX = rawX + repelOffset(rawX, mouse.x, mouse.active);
                 const opacity = lineOpacity(time, i, waveBlend);
-                const wavy = shouldWave(i, time, waveBlend);
+                const strength = lineWaveStrength(i, time, waveBlend);
+                const points: Array<[number, number]> = [];
+                const step = strength > 0 ? 4 : height;
 
-                if (wavy) {
-                    const points: Array<[number, number]> = [];
-                    const step = 4;
-                    for (let y = 0; y <= height; y += step) {
-                        const wave =
-                            Math.sin(y * 0.045 + time * 0.0018 + i * 0.4) *
-                            WAVE_AMPLITUDE *
-                            waveBlend;
-                        points.push([baseX + wave, y]);
-                    }
-                    drawLine(points, opacity);
-                } else {
-                    drawLine(
-                        [
-                            [baseX, 0],
-                            [baseX, height],
-                        ],
-                        opacity,
-                    );
+                for (let y = 0; y <= height; y += step) {
+                    const wave =
+                        strength > 0
+                            ? Math.sin(
+                                  y * WAVE_FREQ + time * 0.0012 + i * 0.4,
+                              ) *
+                              WAVE_AMPLITUDE *
+                              strength
+                            : 0;
+                    points.push([baseX + wave, y]);
                 }
+
+                if (points[points.length - 1][1] < height) {
+                    points.push([baseX, height]);
+                }
+
+                drawLine(points, opacity);
             }
 
             for (let j = rowStart; j <= rowEnd; j++) {
                 const rawY = j * GRID_SPACING + driftY;
                 const baseY = rawY + repelOffset(rawY, mouse.y, mouse.active);
                 const opacity = lineOpacity(time, j + 100, waveBlend);
-                const wavy = shouldWave(j + 50, time, waveBlend);
+                const strength = lineWaveStrength(j + 50, time, waveBlend);
+                const points: Array<[number, number]> = [];
+                const step = strength > 0 ? 4 : width;
 
-                if (wavy) {
-                    const points: Array<[number, number]> = [];
-                    const step = 4;
-                    for (let x = 0; x <= width; x += step) {
-                        const wave =
-                            Math.sin(x * 0.045 + time * 0.0016 + j * 0.35) *
-                            WAVE_AMPLITUDE *
-                            waveBlend;
-                        points.push([x, baseY + wave]);
-                    }
-                    drawLine(points, opacity);
-                } else {
-                    drawLine(
-                        [
-                            [0, baseY],
-                            [width, baseY],
-                        ],
-                        opacity,
-                    );
+                for (let x = 0; x <= width; x += step) {
+                    const wave =
+                        strength > 0
+                            ? Math.sin(
+                                  x * WAVE_FREQ + time * 0.0011 + j * 0.35,
+                              ) *
+                              WAVE_AMPLITUDE *
+                              strength
+                            : 0;
+                    points.push([x, baseY + wave]);
                 }
+
+                if (points[points.length - 1][0] < width) {
+                    points.push([width, baseY]);
+                }
+
+                drawLine(points, opacity);
             }
         };
 
