@@ -13,6 +13,7 @@ interface Props {
   action?: string;
   showYear?: boolean;
   filterable?: boolean;
+  animated?: boolean;
 }
 
 const {
@@ -20,10 +21,15 @@ const {
   action = 'View',
   showYear = true,
   filterable = false,
+  animated = false,
 } = Astro.props;
 ---
 
-<div class="project-list" data-project-list={filterable ? 'filterable' : undefined}>
+<div
+  class:list={['project-list', animated && 'reveal-list']}
+  data-project-list={filterable ? 'filterable' : undefined}
+  {...(animated && { 'data-reveal-list': true })}
+>
   {projects.map((project, index) => {
     const content = (
       <>
@@ -42,26 +48,39 @@ const {
       </>
     );
 
+    const revealStyle = animated
+      ? { '--reveal-delay': `${index * 250}ms` }
+      : undefined;
+
     return project.href ? (
       <a
-        class="project-row"
+        class:list={['project-row', animated && 'reveal-item']}
         href={project.href}
         data-project-row
         data-categories={project.categories.join(',')}
+        style={revealStyle}
       >
         {content}
       </a>
     ) : (
       <article
-        class="project-row project-row--static"
+        class:list={['project-row', 'project-row--static', animated && 'reveal-item']}
         data-project-row
         data-categories={project.categories.join(',')}
+        style={revealStyle}
       >
         {content}
       </article>
     );
   })}
 </div>
+
+{animated && (
+  <script>
+    import { initRevealLists } from '../scripts/reveal-list';
+    initRevealLists();
+  </script>
+)}
 
 {filterable && (
   <script is:inline>
