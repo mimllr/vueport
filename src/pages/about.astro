@@ -14,7 +14,7 @@ import { links, profile } from "../data/site";
                         Product leader. <span>Craft-obsessed builder.</span>
                     </h1>
 
-                    <div class="bio-body" data-scramble-text>
+                    <div class="bio-body" data-fade-text>
                     <p>
                         I started out writing code. Not because I wanted to be
                         an engineer forever, but because I believed — and still
@@ -112,13 +112,41 @@ import { links, profile } from "../data/site";
 </Layout>
 
 <script>
-    import { initScrambleText } from "../scripts/scramble-text";
-    initScrambleText();
+    import { initFadeText } from "../scripts/fade-text";
+    initFadeText();
 </script>
 
 <style>
-    .bio-body[data-scramble-text]:not([data-scramble-started]) {
-        visibility: hidden;
+    .bio-body[data-fade-text] p {
+        opacity: 0;
+        transition: opacity 0.8s ease;
+    }
+
+    .bio-body[data-fade-text] p:nth-child(1) {
+        transition-delay: 0ms;
+    }
+
+    .bio-body[data-fade-text] p:nth-child(2) {
+        transition-delay: 180ms;
+    }
+
+    .bio-body[data-fade-text] p:nth-child(3) {
+        transition-delay: 360ms;
+    }
+
+    .bio-body[data-fade-text] p:nth-child(4) {
+        transition-delay: 540ms;
+    }
+
+    .bio-body[data-fade-text].is-visible p {
+        opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .bio-body[data-fade-text] p {
+            opacity: 1;
+            transition: none;
+        }
     }
 
     .about-grid {
