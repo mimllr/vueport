@@ -85,12 +85,13 @@ const statusClass = (status: string) =>
                         <h2>Small tools with strict boundaries</h2>
                     </div>
                 </div>
-                <div class="product-list">
+                <div class="product-list reveal-list" data-reveal-list>
                     {
                         tinybotsProducts.map((product, index) => (
                             <a
-                                class="product-row"
+                                class="product-row reveal-item"
                                 href={product.href}
+                                style={`--reveal-delay: ${index * 250}ms`}
                                 target="_blank"
                                 rel="noopener"
                             >
@@ -154,6 +155,11 @@ const statusClass = (status: string) =>
         </section>
     </main>
 </Layout>
+
+<script>
+    import { initRevealLists } from "../scripts/reveal-list";
+    initRevealLists();
+</script>
 
 <style>
     .tinybots-hero {

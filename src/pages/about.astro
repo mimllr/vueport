@@ -14,6 +14,7 @@ import { links, profile } from "../data/site";
                         Product leader. <span>Craft-obsessed builder.</span>
                     </h1>
 
+                    <div class="bio-body" data-fade-text>
                     <p>
                         I started out writing code. Not because I wanted to be
                         an engineer forever, but because I believed — and still
@@ -44,6 +45,7 @@ import { links, profile } from "../data/site";
                         My work tends to orbit the same question: why does this
                         work the way it does, and how could it work better?
                     </p>
+                    </div>
                 </article>
 
                 <aside class="about-sidebar">
@@ -109,7 +111,44 @@ import { links, profile } from "../data/site";
     </main>
 </Layout>
 
+<script>
+    import { initFadeText } from "../scripts/fade-text";
+    initFadeText();
+</script>
+
 <style>
+    .bio-body[data-fade-text] p {
+        opacity: 0;
+        transition: opacity 0.8s ease;
+    }
+
+    .bio-body[data-fade-text] p:nth-child(1) {
+        transition-delay: 0ms;
+    }
+
+    .bio-body[data-fade-text] p:nth-child(2) {
+        transition-delay: 180ms;
+    }
+
+    .bio-body[data-fade-text] p:nth-child(3) {
+        transition-delay: 360ms;
+    }
+
+    .bio-body[data-fade-text] p:nth-child(4) {
+        transition-delay: 540ms;
+    }
+
+    .bio-body[data-fade-text].is-visible p {
+        opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .bio-body[data-fade-text] p {
+            opacity: 1;
+            transition: none;
+        }
+    }
+
     .about-grid {
         display: grid;
         grid-template-columns: minmax(0, 0.58fr) minmax(380px, 0.42fr);

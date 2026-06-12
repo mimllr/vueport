@@ -456,6 +456,15 @@ const navItems = [
         padding: 40px;
     }
 
+    .dark-card--animated {
+        background: linear-gradient(135deg, var(--teal-card), #134e4a);
+    }
+
+    .dark-card--animated > :not(.animated-grid-bg) {
+        position: relative;
+        z-index: 1;
+    }
+
     .dark-panel {
         padding: 72px;
     }
@@ -604,6 +613,37 @@ const navItems = [
 
     .project-list {
         border-top: 1.5px solid var(--charcoal);
+    }
+
+    .reveal-list .reveal-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+            opacity 0.6s ease,
+            transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    .reveal-list.is-visible .reveal-item {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .reveal-list .project-row {
+        transition:
+            opacity 0.6s ease,
+            transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+            background 0.16s ease,
+            margin 0.16s ease,
+            padding 0.16s ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .reveal-list .reveal-item {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
     }
 
     .project-row {

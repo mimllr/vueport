@@ -7,16 +7,23 @@ interface Metric {
 interface Props {
   metrics: Metric[];
   compact?: boolean;
+  animated?: boolean;
 }
 
-const { metrics, compact = false } = Astro.props;
+const { metrics, compact = false, animated = false } = Astro.props;
 ---
 
 {compact ? (
   <div class="metric-grid metric-grid--compact">
-    {metrics.map((metric) => (
+    {metrics.map((metric, index) => (
       <div class="metric-cell">
-        <strong>{metric.value}</strong>
+        <strong
+          {...(animated && {
+            "data-counter": true,
+            "data-counter-value": metric.value,
+            "data-counter-delay": String(index * 140),
+          })}
+        >{metric.value}</strong>
         <span>{metric.label}</span>
       </div>
     ))}
@@ -24,12 +31,139 @@ const { metrics, compact = false } = Astro.props;
 ) : (
   <section class="metric-band">
     <div class="metric-grid">
-      {metrics.map((metric) => (
+      {metrics.map((metric, index) => (
         <div class="metric-cell">
-          <strong>{metric.value}</strong>
+          <strong
+            {...(animated && {
+              "data-counter": true,
+              "data-counter-value": metric.value,
+              "data-counter-delay": String(index * 140),
+            })}
+          >{metric.value}</strong>
           <span>{metric.label}</span>
         </div>
       ))}
     </div>
   </section>
+)}
+
+{animated && (
+  <script>
+    const COUNT_MS = 2000;
+    const HOLD_MS = 5000;
+    const RESET_MS = 450;
+
+    type ParsedValue = {
+      prefix: string;
+      target: number;
+      suffix: string;
+      display: string;
+    };
+
+    function parseValue(value: string): ParsedValue | null {
+      const match = value.match(/^(\D*)(\d+(?:\.\d+)?)(\D*)$/);
+      if (!match) return null;
+      const target = Number(match[2]);
+      if (!Number.isFinite(target)) return null;
+      return {
+        prefix: match[1],
+        target,
+        suffix: match[3],
+        display: value,
+      };
+    }
+
+    function formatValue(parsed: ParsedValue, amount: number) {
+      return `${parsed.prefix}${Math.round(amount)}${parsed.suffix}`;
+    }
+
+    function easeOutCubic(t: number) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function wait(ms: number) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    function animateTo(
+      el: HTMLElement,
+      parsed: ParsedValue,
+      from: number,
+      to: number,
+      duration: number,
+    ) {
+      return new Promise<void>((resolve) => {
+        const start = performance.now();
+
+        const frame = (now: number) => {
+          const t = Math.min(1, (now - start) / duration);
+          const current = from + (to - from) * easeOutCubic(t);
+          el.textContent = formatValue(parsed, current);
+
+          if (t < 1) {
+            requestAnimationFrame(frame);
+          } else {
+            el.textContent = formatValue(parsed, to);
+            resolve();
+          }
+        };
+
+        requestAnimationFrame(frame);
+      });
+    }
+
+    async function runCounter(el: HTMLElement, parsed: ParsedValue, delay: number) {
+      await wait(delay);
+
+      while (true) {
+        el.textContent = formatValue(parsed, 0);
+        await animateTo(el, parsed, 0, parsed.target, COUNT_MS);
+        await wait(HOLD_MS);
+        el.textContent = formatValue(parsed, 0);
+        await wait(RESET_MS);
+      }
+    }
+
+    function initCounters() {
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      if (reducedMotion) return;
+
+      document.querySelectorAll("[data-counter]").forEach((node) => {
+        if (!(node instanceof HTMLElement)) return;
+
+        const value = node.getAttribute("data-counter-value");
+        if (!value) return;
+
+        const parsed = parseValue(value);
+        if (!parsed) return;
+
+        const delay = Number(node.getAttribute("data-counter-delay") || 0);
+        const band = node.closest(".metric-band");
+
+        const start = () => {
+          runCounter(node, parsed, delay);
+        };
+
+        if (!band) {
+          start();
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (!entries[0]?.isIntersecting) return;
+            observer.disconnect();
+            start();
+          },
+          { threshold: 0.35 },
+        );
+
+        observer.observe(band);
+      });
+    }
+
+    initCounters();
+  </script>
 )}
