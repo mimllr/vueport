@@ -171,10 +171,10 @@ export const tinybotsCapabilities = [
     href: links.tinybotsExternal,
   },
   {
-    name: "Chat Integrations",
-    description: "Discord & Slack bots for any workflow.",
-    status: "Beta",
-    icon: "💬",
+    name: "Full-Stack Web",
+    description: "End-to-end web apps, APIs and admin panels.",
+    status: "Live",
+    icon: "🌐",
     href: links.tinybotsExternal,
   },
 ];
@@ -201,6 +201,33 @@ export const tinybotsProducts = [
     icon: "🥅",
     href: links.tinybotsExternal.hxckeyDiscord,
   },
+];
+
+export const tinybotsProcess = [
+  {
+    number: "01",
+    title: "Rapid prototyping",
+    description:
+      "From idea to a working build in days, not quarters. We prototype quickly, put it in front of real use, and keep only what proves its worth.",
+  },
+  {
+    number: "02",
+    title: "Focused products",
+    description:
+      "Each app does one thing exceptionally well. No bloat, no upsells — just tools that respect your time and your attention.",
+  },
+  {
+    number: "03",
+    title: "AI & agentic iteration",
+    description:
+      "We build with agentic AI in the loop, iterating continuously so products grow sharper, faster, and more capable with every cycle.",
+  },
+];
+
+export const tinybotsStats = [
+  { value: "Days", label: "Idea to prototype" },
+  { value: "One", label: "Job per product" },
+  { value: "Always", label: "Iterating" },
 ];
 
 // export const tinybotsValues = [

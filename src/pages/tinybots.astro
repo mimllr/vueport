@@ -5,7 +5,8 @@ import {
     profile,
     tinybotsCapabilities,
     tinybotsProducts,
-    tinybotsValues,
+    tinybotsProcess,
+    tinybotsStats,
 } from "../data/site";
 
 const statusClass = (status: string) =>
@@ -18,10 +19,11 @@ const statusClass = (status: string) =>
             <div class="container tinybots-hero-grid">
                 <div>
                     <p class="eyebrow eyebrow--dark">Tinybots · Est. 2026</p>
-                    <h1>Agent-driven development, all in-house.</h1>
+                    <h1>We build focused products, fast.</h1>
                     <p>
-                        Tinybots are small, focused applications, built by tiny
-                        bots:<br /> me, and a team of LLMs.
+                        Tinybots designs and ships lightweight apps with
+                        agentic AI in the loop — prototyping quickly, iterating
+                        constantly, and keeping only what earns its place.
                     </p>
                     <div class="button-row">
                         <a
@@ -51,31 +53,33 @@ const statusClass = (status: string) =>
             </div>
         </section>
 
-        <!-- <section class="page-section">
+        <section class="page-section">
             <div class="container">
-                <p class="eyebrow">Values</p>
-                <h2 class="values-title">How we build</h2>
+                <p class="eyebrow">How we work</p>
+                <h2 class="values-title">Less software, shipped sooner.</h2>
                 <div class="values-grid">
                     {
-                        tinybotsValues.map((value) => (
+                        tinybotsProcess.map((item) => (
                             <article class="value-card">
-                                <span aria-hidden="true">
-                                    {value.icon === "shield"
-                                        ? "◈"
-                                        : value.icon === "cube"
-                                          ? "□"
-                                          : value.icon === "rocket"
-                                            ? "↗"
-                                            : "•"}
-                                </span>
-                                <h3>{value.title}</h3>
-                                <p>{value.description}</p>
+                                <span>{item.number}</span>
+                                <h3>{item.title}</h3>
+                                <p>{item.description}</p>
                             </article>
                         ))
                     }
                 </div>
+                <div class="tinybots-stats">
+                    {
+                        tinybotsStats.map((stat) => (
+                            <div class="tinybots-stat">
+                                <strong>{stat.value}</strong>
+                                <span>{stat.label}</span>
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
-        </section> -->
+        </section>
 
         <section class="page-section page-section--light" id="products">
             <div class="container">
@@ -124,17 +128,15 @@ const statusClass = (status: string) =>
                 />
                 <article>
                     <p class="eyebrow">Founder Note</p>
-                    <h2>Software doesn't have to be hard.</h2>
+                    <h2>Consciously crafted software.</h2>
                     <p>
-                        Tinybots was started to solve my own problems. I hated
-                        apps that were more invasive than helpful, and were more
-                        work than they were worth.
+                        Every product ships without bloat, trackers, or upsells
+                        — just focused tools that respect your attention.
                     </p>
                     <p>
-                        With my own experience and expertise, and AI Agents at
-                        my side, I could build things that fit my own needs in a
-                        short amount of time. I decided to share that with
-                        everyone.
+                        By combining human craft with agentic AI, we iterate
+                        faster and build products that are smaller, sharper, and
+                        more capable with every cycle.
                     </p>
                 </article>
             </div>
@@ -142,7 +144,7 @@ const statusClass = (status: string) =>
 
         <section class="page-section page-section--light">
             <div class="container tinybots-cta dark-panel">
-                <h2>Follow the build.</h2>
+                <h2>See what doing less, better, looks like.</h2>
                 <div class="button-row">
                     <a
                         class="button button--dark-primary"
@@ -444,6 +446,30 @@ const statusClass = (status: string) =>
         margin-top: 0;
     }
 
+    .tinybots-stats {
+        display: flex;
+        justify-content: center;
+        gap: 80px;
+        margin-top: 80px;
+        padding-top: 80px;
+        border-top: 1px solid var(--border);
+        text-align: center;
+    }
+
+    .tinybots-stat strong {
+        display: block;
+        font-size: 38px;
+        font-weight: 820;
+        letter-spacing: -0.03em;
+    }
+
+    .tinybots-stat span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 15px;
+    }
+
   @media (max-width: 1000px) {
     .tinybots-hero-grid,
     .values-grid,
@@ -466,6 +492,11 @@ const statusClass = (status: string) =>
       align-items: flex-start;
       flex-direction: column;
     }
+
+    .tinybots-stats {
+      flex-wrap: wrap;
+      gap: 40px;
+        }
   }
 
   @media (max-width: 560px) {
