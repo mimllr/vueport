@@ -69,6 +69,8 @@ export const links = {
   twitter: "https://twitter.com/mimllr",
   tinybotsExternal: {
     main: "https://tinybots.app",
+    bootsaas: "https://tinybots.app/products/bootsaas/",
+    quickgpt: "https://tinybots.app/products/quickgpt/",
     greenlight: "https://tinybots.app/products",
     hxckey: "https://tinybots.app/products",
     hxckeyDiscord: "https://tinybots.app/products",
@@ -180,6 +182,22 @@ export const tinybotsCapabilities = [
 ];
 
 export const tinybotsProducts = [
+  {
+    name: "BootSaaS",
+    description:
+      "Agent-ready SaaS template ready to deploy, launch, and accept subscription payments.",
+    status: "Live",
+    icon: "🚀",
+    href: links.tinybotsExternal.bootsaas,
+  },
+  {
+    name: "QuickGPT",
+    description:
+      "macOS menubar app for quick ChatGPT conversations with your API key or Codex CLI login.",
+    status: "Live",
+    icon: "💬",
+    href: links.tinybotsExternal.quickgpt,
+  },
   {
     name: "Modify",
     description: "Health & Fitness app that keeps you balanced.",
