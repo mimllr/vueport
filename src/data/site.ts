@@ -61,7 +61,7 @@ export const links = {
   tinybots: "/tinybots",
   resume: "/resume",
   contact: "/contact",
-  resumePdf: "/resume.pdf",
+  resumePdf: "/mike-miller-resume.pdf",
   resumeJson: "/resume.json",
   email: `mailto:${contactEmail}`,
   linkedin: "https://www.linkedin.com/in/mimllr",
