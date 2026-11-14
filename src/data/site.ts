@@ -181,6 +181,13 @@ export const tinybotsCapabilities = [
 
 export const tinybotsProducts = [
   {
+    name: "MultiStream Studio",
+    description: "Watch multiple streams together in one place.",
+    status: "Live",
+    icon: "📺",
+    href: "https://multistream.studio",
+  },
+  {
     name: "Modify",
     description: "Health & Fitness app that keeps you balanced.",
     status: "Beta",
